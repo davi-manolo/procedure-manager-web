@@ -1,0 +1,21 @@
+footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 156px;
+  background-color: rgb(92, 179, 255);
+}
+
+.content-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1080px;
+  background-color: rgb(196, 48, 246);
+}
+
+hr {
+  width: 1080px;
+  border: 0.5px solid rgb(0, 0, 0);
+}
