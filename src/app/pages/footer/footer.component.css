@@ -1,0 +1,35 @@
+.container {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 156px;
+  background-color: #FFF;
+  padding-right: 48px;
+  padding-left: 48px;
+}
+
+footer {
+  width: 100%;
+}
+
+.content-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1295px;
+  height: 55px;
+  font-size: 12px;
+  color: #363636;
+}
+
+hr {
+  height: 0;
+  margin-top: 100px;
+  width: 1295px;
+  border-color: #E8E8E9;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+}

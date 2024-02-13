@@ -1,0 +1,34 @@
+<div class="panel">
+  <div class="fixed-content">
+    <img ngSrc="assets/images/banner-index.png" alt="Procedure Manager" height="939" width="1250">
+    <div class="background-filter"></div>
+  </div>
+  <div class="login-panel">
+    <p class="tittle">Acessar</p>
+    <p class="sub-tittle">Informe seus dados para realizar o acesso</p>
+    <form (ngSubmit)="login()" [formGroup]="loginForm" #formDir="ngForm">
+      <div class="input">
+        <label for="email">Informe seu email *</label>
+        <img ngSrc="assets/images/icons/email.svg" alt="Email" class="icon" height="24" width="24"/>
+        <input type="email" id="email" placeholder="Email" formControlName="email" required/>
+      </div>
+      <div class="input">
+        <label for="password">Digite sua senha *</label>
+        <img ngSrc="assets/images/icons/password.svg" alt="Senha" class="icon" height="24" width="24"/>
+        <input type="password" id="password" placeholder="Senha" formControlName="password" required/>
+      </div>
+      <div>
+        <input class="button" type="submit" value="Acessar Conta"/>
+      </div>
+      <div *ngIf="formDir.submitted && email.invalid && password.invalid" class="error-message">
+        <p>Email e senha devem ser preenchidos!</p>
+      </div>
+      <div *ngIf="errorMessage != null && formDir.submitted" class="error-message">
+        <p>{{errorMessage}}</p>
+      </div>
+    </form>
+    <div class="register-area">
+      <p>Ainda não tem uma conta? Realize seu <a routerLink="/register">cadastro</a>.</p>
+    </div>
+  </div>
+</div>

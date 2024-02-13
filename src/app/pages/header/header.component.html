@@ -1,0 +1,27 @@
+<header>
+  <nav>
+    <div class="content-area">
+      <a class="brand" routerLink="/dashboard">
+        <img ngSrc="assets/images/logo.png" alt="Procedure Manager" height="512" width="512"/>
+        <h2>Gerenciador de Procedimentos</h2>
+      </a>
+      <ul class="links">
+        <li><a routerLink="/started">Como Funciona</a></li>
+        <li><a routerLink="/about">Sobre</a></li>
+        @if (loginService.isAuthenticated()) {
+          <li><a routerLink="/dashboard">Procedimentos</a></li>
+        }
+      </ul>
+      <div class="actions">
+        <ul class="links">
+          @if (loginService.isAuthenticated()) {
+            <li>Olá Fulano!</li>
+          } @else {
+            <li><a routerLink="/register">Cadastrar</a></li>
+            <li><a routerLink="/login">Entrar</a></li>
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
