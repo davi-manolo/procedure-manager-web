@@ -1,7 +1,7 @@
 {
   "name": "procedure-manager-web",
   "description": "Gerenciador de Procedimentos (Interface)",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

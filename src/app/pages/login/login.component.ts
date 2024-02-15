@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
           next: (token) => {
             this.localStorage.set('token.expiration', token.expiration);
             this.localStorage.set('token.bearer', token.bearer);
+            this.localStorage.set('user.email', this.loginForm.get('email')?.value)
             this.router.navigate(['/dashboard']);
           },
           error: () => this.errorMessage = 'Email ou senha inválidos!'
