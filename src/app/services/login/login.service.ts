@@ -28,7 +28,7 @@ export class LoginService {
   }
 
   logout(): void {
-    localStorage.clear()
+    this.localStorage.clear()
   }
 
 }
