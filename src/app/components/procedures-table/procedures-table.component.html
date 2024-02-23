@@ -1,0 +1,43 @@
+<table>
+  <caption class="sr-only">Descrição da Tabela</caption>
+  <thead>
+    <tr>
+      <th class="date-column">Data Procedimento</th>
+      <th class="costumer-column">Cliente</th>
+      <th class="procedure-column">Procedimento</th>
+      <th class="value-column">R$ Valor Procedimento</th>
+      <th class="received-column">R$ Valor Recebido</th>
+      <th class="tools-column">Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let procedure of paginatedItems">
+      <td>{{ procedure.procedureDate | date:'dd/MM/yyyy' }}</td>
+      <td class="bold">{{ procedure.customer }}</td>
+      <td>{{ procedure.procedureTypeName }}</td>
+      <td>{{ procedure.procedureValue | currency:'BRL':'symbol':'1.2-2' }}</td>
+      <td>{{ procedure.valueReceived | currency:'BRL':'symbol':'1.2-2' }}</td>
+      <td class="actions">
+        <button class="edit-button">
+          <img ngSrc="assets/images/icons/edit-procedure.svg" alt="Editar procedimento" width="14" height="14"/>
+        </button>
+        <button class="delete-button">
+          <img ngSrc="assets/images/icons/delete-procedure.svg" alt="Excluir procedimento" width="14" height="14"/>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="pagination">
+  <button (click)="onPageChange(currentPage - 1)" [disabled]="isFirstPage()" class="previous-button">
+    <img ngSrc="assets/images/icons/arrow-left.svg" alt="Próximo" width="30" height="30"/>
+    Anterior
+  </button>
+  <p class="tab">|</p>
+  <span>{{ currentPage }} de {{ Math.ceil(procedureList.length / itemsPerPage) }}</span>
+  <p class="tab">|</p>
+  <button (click)="onPageChange(currentPage + 1)" [disabled]="isLastPage()" class="next-button">
+    Próximo
+    <img ngSrc="assets/images/icons/arrow-right.svg" alt="Anterior" width="30" height="30"/>
+  </button>
+</div>

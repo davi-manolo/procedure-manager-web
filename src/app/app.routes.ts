@@ -5,10 +5,11 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { authGuard } from "./services/guards/auth.guard";
 import { StartedComponent } from "./pages/started/started.component";
 import { AboutComponent } from "./pages/about/about.component";
+import { preventLoginGuard } from "./services/guards/prevent-login.guard";
 
 export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [preventLoginGuard] },
   { path: 'started', component: StartedComponent },
   { path: 'about', component: AboutComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },

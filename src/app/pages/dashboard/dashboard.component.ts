@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
+import { NgForOf } from "@angular/common";
+import { ProceduresTableComponent } from "../../components/procedures-table/procedures-table.component";
+import { ProceduresSummaryComponent } from "../../components/procedures-summary/procedures-summary.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [
+    NgForOf,
+    ProceduresTableComponent,
+    ProceduresSummaryComponent
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

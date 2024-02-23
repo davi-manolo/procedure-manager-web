@@ -5,6 +5,8 @@ import { LoginService } from "../../services/login/login.service";
 import { LocalStorageService } from "../../services/storage/local-storage.service";
 import { Login } from "../../models/login.model";
 import { NgClass, NgIf, NgOptimizedImage } from "@angular/common";
+import { UserService } from "../../services/user/user.service";
+import { mergeMap } from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    private userService: UserService,
     private localStorage: LocalStorageService,
     private router: Router
   ) {}
@@ -40,12 +43,18 @@ export class LoginComponent implements OnInit {
 
   async login() {
     if (!this.loginForm.invalid) {
-      this.loginService.login(this.loginForm.value).subscribe(
+      this.loginService.login(this.loginForm.value).pipe(
+        mergeMap((token) => {
+          this.localStorage.set('token.expiration', token.expiration);
+          this.localStorage.set('token.bearer', token.bearer);
+          this.localStorage.set('user.email', this.loginForm.get('email')?.value);
+
+          return this.userService.getUser();
+        })
+      ).subscribe(
         {
-          next: (token) => {
-            this.localStorage.set('token.expiration', token.expiration);
-            this.localStorage.set('token.bearer', token.bearer);
-            this.localStorage.set('user.email', this.loginForm.get('email')?.value)
+          next: (user) => {
+            this.localStorage.set('user.id', user.userId);
             this.router.navigate(['/dashboard']);
           },
           error: () => this.errorMessage = 'Email ou senha inválidos!'

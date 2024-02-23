@@ -1,7 +1,13 @@
 .panel {
-  height: 100%;
-  width: 100%;
   align-content: center;
   margin: 0 auto;
-  background-color: brown;
+  width: 1295px;
+  height: 100%;
+}
+
+.tools {
+  margin-bottom: 24px;
+  height: 45px;
+  width: 100%;
+  background-color: #0078E5;
 }
