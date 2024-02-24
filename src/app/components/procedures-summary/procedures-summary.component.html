@@ -1,40 +1,52 @@
 <div class="summary">
   <div class="areas">
     <p class="description">Média do mês (valor)</p>
-    <p class="values">R$ 2.500,00</p>
+    <p class="values">{{ totalReceivedAvg | currency:'BRL':'symbol':'1.2-2' }}</p>
     <div class="info">
-      <img ngSrc="assets/images/icons/email.svg" alt="Média do mês (valor)" height="20" width="20">
-      <p class="info-dynamic">+R$ 210,00</p>
+      <img *ngIf="totalReceivedAvgPrev >= 0" ngSrc="assets/images/icons/bank-green.svg" alt="Média do mês (valor)" height="20" width="20">
+      <img *ngIf="totalReceivedAvgPrev < 0" ngSrc="assets/images/icons/bank-orange.svg" alt="Média do mês (valor)" height="20" width="20">
+        <p [ngClass]="{ 'info-values-green': totalReceivedAvgPrev >= 0, 'info-values-orange': totalReceivedAvgPrev < 0 }">
+          {{ (totalReceivedAvgPrev >= 0) ? '+' : '' }}{{ totalReceivedAvgPrev | currency:'BRL':'symbol':'1.2-2' }}
+      </p>
       <p class="info-static">que Janeiro</p>
     </div>
   </div>
   <div class="vertical-line"></div>
   <div class="areas">
     <p class="description">Média do mês (procedimento)</p>
-    <p class="values">R$ 2.500,00</p>
+    <p class="values">{{ totalProcedureAmountAvg }}</p>
     <div class="info">
-      <img ngSrc="assets/images/icons/email.svg" alt="Média do mês (procedimento)" height="20" width="20">
-      <p class="info-dynamic">+R$ 210,00</p>
+        <img *ngIf="totalProcedureAmountAvgPrev >= 0" ngSrc="assets/images/icons/people-green.svg" alt="Média do mês (valor)" height="20" width="20">
+        <img *ngIf="totalProcedureAmountAvgPrev < 0" ngSrc="assets/images/icons/people-orange.svg" alt="Média do mês (valor)" height="20" width="20">
+        <p [ngClass]="{ 'info-values-green': totalProcedureAmountAvgPrev >= 0, 'info-values-orange': totalProcedureAmountAvgPrev < 0 }">
+          {{ (totalProcedureAmountAvgPrev >= 0) ? '+' : '' }}{{ totalProcedureAmountAvgPrev }}
+      </p>
       <p class="info-static">que Janeiro</p>
     </div>
   </div>
   <div class="vertical-line"></div>
   <div class="areas">
     <p class="description">Total de procedimentos</p>
-    <p class="values">R$ 2.500,00</p>
+    <p class="values">{{ totalProcedureAmount }}</p>
     <div class="info">
-      <img ngSrc="assets/images/icons/email.svg" alt="Total de procedimentos" height="20" width="20">
-      <p class="info-dynamic">+R$ 210,00</p>
+        <img *ngIf="totalProcedureAmountPrev >= 0" ngSrc="assets/images/icons/person-green.svg" alt="Média do mês (valor)" height="20" width="20">
+        <img *ngIf="totalProcedureAmountPrev < 0" ngSrc="assets/images/icons/person-orange.svg" alt="Média do mês (valor)" height="20" width="20">
+        <p [ngClass]="{ 'info-values-green': totalProcedureAmountPrev >= 0, 'info-values-orange': totalProcedureAmountPrev < 0 }">
+          {{ (totalProcedureAmountPrev >= 0) ? '+' : '' }}{{ totalProcedureAmountPrev }}
+      </p>
       <p class="info-static">que Janeiro</p>
     </div>
   </div>
   <div class="vertical-line"></div>
   <div class="areas">
     <p class="description">Total a receber</p>
-    <p class="values">R$ 100.000,00</p>
+    <p class="values">{{ totalReceived | currency:'BRL':'symbol':'1.2-2' }}</p>
     <div class="info">
-      <img ngSrc="assets/images/icons/email.svg" alt="Total a receber" height="20" width="20">
-      <p class="info-dynamic">+R$ 20.800,50</p>
+        <img *ngIf="totalReceivedPrev >= 0" ngSrc="assets/images/icons/wallet-green.svg" alt="Média do mês (valor)" height="20" width="20">
+        <img *ngIf="totalReceivedPrev < 0" ngSrc="assets/images/icons/wallet-orange.svg" alt="Média do mês (valor)" height="20" width="20">
+      <p [ngClass]="{ 'info-values-green': totalReceivedPrev >= 0, 'info-values-orange': totalReceivedPrev < 0 }">
+          {{ (totalReceivedPrev >= 0) ? '+' : '' }}{{ totalReceivedPrev | currency:'BRL':'symbol':'1.2-2' }}
+      </p>
       <p class="info-static">que Janeiro</p>
     </div>
   </div>

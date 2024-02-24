@@ -50,13 +50,12 @@
 }
 
 .info > img {
-  height: 18px;
-  width: 18px;
-  background-color: #4FC62B;
-  border-radius: 50%;
+  margin-top: -1px;
+  height: 20px;
+  width: 20px;
 }
 
-.info-dynamic, .info-static {
+.info-values-green, .info-values-orange, .info-static {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -64,8 +63,12 @@
   letter-spacing: -0.1px;
 }
 
-.info-dynamic {
+.info-values-green {
   color: #4FC62B;
+}
+
+.info-values-orange {
+  color: #FFB649;
 }
 
 .info-static {

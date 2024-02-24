@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { environment } from "../../../environments/environment";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { User } from "../../models/user.model";
 import { Observable } from "rxjs";
 import { LocalStorageService } from "../storage/local-storage.service";
+import { EnvironmentService } from "../environment-service";
+import { ApiUrls } from "../../../config/api-urls";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends EnvironmentService {
 
-  private apiUrl = environment.apiUrl;
+  apiUrlUsers: string = `${this.apiUrl.concat(ApiUrls.user)}`;
 
-  constructor(private http: HttpClient, private storage: LocalStorageService) {}
+  constructor(http: HttpClient, storage: LocalStorageService) {
+    super(http, storage);
+  }
 
   getUser(): Observable<User> {
-    const url = `${this.apiUrl}/v1/users`;
-
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${this.storage.get('token.bearer')}`)
       .set('Content-Type', 'application/json');
@@ -24,7 +25,7 @@ export class UserService {
     const params = new HttpParams()
       .set('userMail', `${this.storage.get('user.email')}`);
 
-    return this.http.get<User>(url, { headers: headers, params: params });
+    return this.http.get<User>(this.apiUrlUsers, { headers: headers, params: params });
   }
 
 }

@@ -1,0 +1,125 @@
+.tools {
+  display: inline-flex;
+  gap: 23px;
+  margin-bottom: 24px;
+  height: 42px;
+  width: 100%;
+}
+
+.actions {
+  display: inline-flex;
+  width: 610px;
+  height: 42px;
+}
+
+.space {
+  width: 180px;
+}
+
+.search-container {
+  position: relative;
+  width: 250px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+}
+
+.search {
+  box-sizing: border-box;
+  display: inline-flex;
+  width: 250px;
+  height: 42px;
+  padding: 14px 14px 14px 45px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  border-radius: 8px;
+  background: #FFF;
+  transition: 0.4s;
+  border: 1px solid rgba(39, 41, 55, 0.12);
+  outline: none;
+}
+
+.search:hover {
+  border-color: #4CAAFF;
+}
+
+.search:focus {
+  border-color: #0078E5;
+}
+
+.button-add-procedure {
+  display: inline-flex;
+  height: 42px;
+  width: 200px;
+  color: #FFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #1991FF;
+  border-radius: 8px;
+  border: 1px solid #0878e5;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.button-add-procedure:hover {
+  background: #4CAAFF;
+  border: 1px solid #1991FF;
+}
+
+.button-add-procedure:active {
+  background: #0078E5;
+}
+
+.button-procedures-type, .button-send, .button-download {
+  cursor: pointer;
+  padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  width: 165px;
+  background: #FFF;
+  color: #272937;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  border-color: rgba(39, 41, 55, 0.12);
+  border-style: solid;
+  border-radius: 0;
+  border-width: 1px 0 1px 1px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.button-procedures-type {
+  width: 235px;
+}
+
+.button-send, .button-download {
+  width: 105px;
+}
+
+.button-download {
+  border-radius: 0 8px 8px 0;
+  border-width: 1px;
+}
+
+.button-procedures-type:hover, .button-send:hover, .button-download:hover {
+  background-color: #F2F2F3;
+}
