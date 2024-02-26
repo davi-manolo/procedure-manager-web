@@ -1,4 +1,4 @@
-<table>
+<table *ngIf="procedureList.length != 0">
   <caption class="sr-only">Descrição da Tabela</caption>
   <thead>
     <tr>
@@ -28,7 +28,7 @@
     </tr>
   </tbody>
 </table>
-<div class="pagination">
+<div class="pagination" *ngIf="procedureList.length != 0">
   <button (click)="onPageChange(currentPage - 1)" [disabled]="isFirstPage()" class="previous-button">
     <img ngSrc="assets/images/icons/arrow-left.svg" alt="Próximo" width="30" height="30"/>
     Anterior
@@ -40,4 +40,13 @@
     Próximo
     <img ngSrc="assets/images/icons/arrow-right.svg" alt="Anterior" width="30" height="30"/>
   </button>
+</div>
+<div class="empty-table" *ngIf="procedureList.length == 0">
+  <img ngSrc="assets/images/icons/empty-list.svg" alt="Anterior" width="100" height="100"/>
+  <p class="title">Sem resultados encontrados</p>
+  <p class="description">
+    Sem resultados para este período/pesquisa selecionado.<br>
+    Comece a criar seus procedimentos ou faça uma busca mais específica dos procedimentos.
+  </p>
+  <p class="filter">Filtros permitidos: data, nome cliente, tipo de procedimento ou valor recebido</p>
 </div>

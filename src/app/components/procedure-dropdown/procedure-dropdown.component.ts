@@ -2,6 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { AsyncPipe, NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { BehaviorSubject } from "rxjs";
 import { DatePeriod } from "../../models/date-period.model";
+import { DatePeriodService } from "../../services/date-period/date-period.service";
+import { DateUtils } from "../../utils/date.utils";
 
 @Component({
   selector: 'app-procedure-dropdown',
@@ -23,7 +25,7 @@ export class ProcedureDropdownComponent implements OnInit {
   selectedItemText = 'Selecione';
   selectedItemSubject = new BehaviorSubject<DatePeriod>(new DatePeriod());
 
-  constructor() {}
+  constructor(private datePeriodService: DatePeriodService) {}
 
   ngOnInit(): void {
     this.getMonths(3);
@@ -46,6 +48,7 @@ export class ProcedureDropdownComponent implements OnInit {
     this.selectedItemSubject.next(item);
     this.isOpen = false;
     this.selectedItemText = item.monthName;
+    this.datePeriodService.setSelectedDate(item);
   }
 
   toggleDropdown() {
@@ -62,16 +65,11 @@ export class ProcedureDropdownComponent implements OnInit {
       const datePeriod: DatePeriod = {
         month: previousMonth.getMonth() + 1,
         year: previousMonth.getFullYear(),
-        monthName: this.getMonthName(previousMonth),
+        monthName: DateUtils.getMonthNameByDate(previousMonth),
       };
 
       this.dropdownItems.push(datePeriod);
     }
-  }
-
-  private getMonthName(date: Date): string {
-    const monthName = date.toLocaleString('pt-BR', { month: 'long' });
-    return monthName.charAt(0).toUpperCase() + monthName.slice(1);
   }
 
 }

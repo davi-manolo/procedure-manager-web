@@ -1,7 +1,16 @@
+import { DateUtils } from "../utils/date.utils";
+
 export class DatePeriod {
 
-  month: number = 0
-  year: number = 0
-  monthName: string = ''
+  month: number
+  year: number
+  monthName: string
+
+  constructor() {
+    const dateNow = new Date();
+    this.month = dateNow.getMonth() + 1;
+    this.year = dateNow.getFullYear();
+    this.monthName = DateUtils.getMonthNameByDate(dateNow);
+  }
 
 }

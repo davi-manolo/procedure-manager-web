@@ -5,6 +5,7 @@ import { Procedure } from "../../models/procedure.model";
 import { LocalStorageService } from "../storage/local-storage.service";
 import { EnvironmentService } from "../environment-service";
 import { ApiUrls } from "../../../config/api-urls";
+import { DatePeriod } from "../../models/date-period.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +18,15 @@ export class ProcedureService extends EnvironmentService {
     super(http, storage);
   }
 
-  getProceduresByPeriod(): Observable<Procedure[]> {
+  getProceduresByPeriod(datePeriod: DatePeriod): Observable<Procedure[]> {
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${this.storage.get('token.bearer')}`)
       .set('Content-Type', 'application/json');
 
     const params = new HttpParams()
       .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', '02') //TODO: Dados devem ser dinâmicos, ajustar após coluna de Ganhos estiver pronto.
-      .set('year', '2024'); //TODO: Dados devem ser dinâmicos, ajustar após coluna de Ganhos estiver pronto.
+      .set('month', datePeriod.month)
+      .set('year', datePeriod.year);
 
     return this.http.get<Procedure[]>(this.apiUrlProcedure, { headers: headers, params: params });
   }

@@ -8,7 +8,7 @@
         <p [ngClass]="{ 'info-values-green': totalReceivedAvgPrev >= 0, 'info-values-orange': totalReceivedAvgPrev < 0 }">
           {{ (totalReceivedAvgPrev >= 0) ? '+' : '' }}{{ totalReceivedAvgPrev | currency:'BRL':'symbol':'1.2-2' }}
       </p>
-      <p class="info-static">que Janeiro</p>
+      <p class="info-static">que {{ selectedPreviousMonth }}</p>
     </div>
   </div>
   <div class="vertical-line"></div>
@@ -21,7 +21,7 @@
         <p [ngClass]="{ 'info-values-green': totalProcedureAmountAvgPrev >= 0, 'info-values-orange': totalProcedureAmountAvgPrev < 0 }">
           {{ (totalProcedureAmountAvgPrev >= 0) ? '+' : '' }}{{ totalProcedureAmountAvgPrev }}
       </p>
-      <p class="info-static">que Janeiro</p>
+      <p class="info-static">que {{ selectedPreviousMonth }}</p>
     </div>
   </div>
   <div class="vertical-line"></div>
@@ -34,7 +34,7 @@
         <p [ngClass]="{ 'info-values-green': totalProcedureAmountPrev >= 0, 'info-values-orange': totalProcedureAmountPrev < 0 }">
           {{ (totalProcedureAmountPrev >= 0) ? '+' : '' }}{{ totalProcedureAmountPrev }}
       </p>
-      <p class="info-static">que Janeiro</p>
+      <p class="info-static">que {{ selectedPreviousMonth }}</p>
     </div>
   </div>
   <div class="vertical-line"></div>
@@ -47,7 +47,7 @@
       <p [ngClass]="{ 'info-values-green': totalReceivedPrev >= 0, 'info-values-orange': totalReceivedPrev < 0 }">
           {{ (totalReceivedPrev >= 0) ? '+' : '' }}{{ totalReceivedPrev | currency:'BRL':'symbol':'1.2-2' }}
       </p>
-      <p class="info-static">que Janeiro</p>
+      <p class="info-static">que {{ selectedPreviousMonth }}</p>
     </div>
   </div>
 </div>
