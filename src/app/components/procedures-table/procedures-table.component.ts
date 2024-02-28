@@ -4,6 +4,7 @@ import { Procedure } from "../../models/procedure.model";
 import { CurrencyPipe, DatePipe, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { DatePeriodService } from "../../services/date-period/date-period.service";
 import { DatePeriod } from "../../models/date-period.model";
+import { DeletePanelComponent } from "../delete-panel/delete-panel.component";
 
 @Component({
   selector: 'app-procedures-table',
@@ -13,7 +14,8 @@ import { DatePeriod } from "../../models/date-period.model";
     CurrencyPipe,
     DatePipe,
     NgOptimizedImage,
-    NgIf
+    NgIf,
+    DeletePanelComponent
   ],
   templateUrl: './procedures-table.component.html',
   styleUrl: './procedures-table.component.css'
@@ -25,6 +27,11 @@ export class ProceduresTableComponent implements OnInit {
   procedureList: Procedure[] = []
   itemsPerPage = 15;
   currentPage = 1;
+
+  isDeletePanelOpen: boolean = false;
+  procedureToDelete: any;
+
+  selectedDate: DatePeriod = new DatePeriod();
 
   constructor(private procedureService: ProcedureService, private datePeriodService: DatePeriodService) {}
 
@@ -53,8 +60,30 @@ export class ProceduresTableComponent implements OnInit {
     return this.procedureList.slice(startIndex, endIndex);
   }
 
+  setProcedureToDeleteAndStartPanel(item: any): void {
+    this.procedureToDelete = item;
+    this.isDeletePanelOpen = true;
+  }
+
+  confirmDeleteProcedureAction(): void {
+    this.procedureService.deleteProcedure(this.procedureToDelete.procedureId).subscribe(() => {
+      this.updateProcedureTable(this.selectedDate);
+      this.closeDeletePanel();
+    });
+  }
+
+  cancelDeleteProcedureAction(): void {
+    this.closeDeletePanel();
+  }
+
+  private closeDeletePanel(): void {
+    this.isDeletePanelOpen = false;
+    this.procedureToDelete = null;
+  }
+
   private updateProcedureTable(selectedDate: DatePeriod) {
     this.procedureService.getProceduresByPeriod(selectedDate).subscribe((procedureList) => {
+      this.selectedDate = selectedDate;
       this.procedureList = procedureList;
     });
   }

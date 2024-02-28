@@ -9,7 +9,6 @@ export const preventLoginGuard: CanActivateFn = () => {
   if (!loginService.isAuthenticated()) {
     return true;
   } else {
-    router.navigate(['/dashboard']).then(() => false);
-    return false;
+    return router.navigate(['/dashboard']).then(() => false);
   }
 };

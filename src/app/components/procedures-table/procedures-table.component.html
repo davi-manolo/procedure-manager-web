@@ -1,3 +1,6 @@
+<!--Painel de confirmarção de exclusão do procedimento -->
+<app-delete-panel *ngIf="isDeletePanelOpen" (confirm)="confirmDeleteProcedureAction()" (cancel)="cancelDeleteProcedureAction()"></app-delete-panel>
+
 <table *ngIf="procedureList.length != 0">
   <caption class="sr-only">Descrição da Tabela</caption>
   <thead>
@@ -21,7 +24,7 @@
         <button class="edit-button">
           <img ngSrc="assets/images/icons/edit-procedure.svg" alt="Editar procedimento" width="14" height="14"/>
         </button>
-        <button class="delete-button">
+        <button class="delete-button" (click)="setProcedureToDeleteAndStartPanel(procedure)">
           <img ngSrc="assets/images/icons/delete-procedure.svg" alt="Excluir procedimento" width="14" height="14"/>
         </button>
       </td>
@@ -48,5 +51,5 @@
     Sem resultados para este período/pesquisa selecionado.<br>
     Comece a criar seus procedimentos ou faça uma busca mais específica dos procedimentos.
   </p>
-  <p class="filter">Filtros permitidos: data, nome cliente, tipo de procedimento ou valor recebido</p>
+  <p class="filter">Pesquise por: data, nome cliente, tipo de procedimento ou valor recebido</p>
 </div>

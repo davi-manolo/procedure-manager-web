@@ -1,0 +1,96 @@
+.base-blur {
+  z-index: 8000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(251, 251, 251, 0.60);
+  backdrop-filter: blur(6px);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-panel {
+  display: flex;
+  width: 480px;
+  height: 280px;
+  padding: 42px;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid rgba(39, 41, 55, 0.12);
+  background: #FFF;
+  box-shadow: 0 2px 8px 0 rgba(39, 41, 55, 0.08);
+  gap: 24px;
+}
+
+.delete-panel > h1 {
+  width: 100%;
+  color: #272937;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -1px;
+}
+
+.delete-panel > p {
+  width: 100%;
+  color: #272937;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+}
+
+.buttons {
+  display: inline-flex;
+  gap: 24px;
+}
+
+.cancel-button, .confirm-button {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.1px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 180px;
+  height: 52px;
+  border-radius: 8px;
+  gap: 8px;
+}
+
+.cancel-button {
+  border: 1px solid #272937;
+  background: #FFF;
+  color: #272937;
+}
+
+.cancel-button:hover {
+  background: rgba(39, 41, 55, 0.05);
+}
+
+.cancel-button:active {
+  background: rgba(39, 41, 55, 0.10);
+}
+
+.confirm-button {
+  border: none;
+  background: #FF3A30;
+  color: #FFF;
+}
+
+.confirm-button:hover {
+  background: #e02f26;
+}
+
+.confirm-button:active {
+  background: #b21209;
+}

@@ -4,6 +4,7 @@ import { BehaviorSubject } from "rxjs";
 import { DatePeriod } from "../../models/date-period.model";
 import { DatePeriodService } from "../../services/date-period/date-period.service";
 import { DateUtils } from "../../utils/date.utils";
+import { LoginService } from "../../services/login/login.service";
 
 @Component({
   selector: 'app-procedure-dropdown',
@@ -25,7 +26,7 @@ export class ProcedureDropdownComponent implements OnInit {
   selectedItemText = 'Selecione';
   selectedItemSubject = new BehaviorSubject<DatePeriod>(new DatePeriod());
 
-  constructor(private datePeriodService: DatePeriodService) {}
+  constructor(private datePeriodService: DatePeriodService, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.getMonths(3);
@@ -52,6 +53,7 @@ export class ProcedureDropdownComponent implements OnInit {
   }
 
   toggleDropdown() {
+    this.loginService.ifTokenExpiredThenRedirect();
     this.isOpen = !this.isOpen;
   }
 

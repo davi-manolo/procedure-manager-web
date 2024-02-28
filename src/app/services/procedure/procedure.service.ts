@@ -31,4 +31,16 @@ export class ProcedureService extends EnvironmentService {
     return this.http.get<Procedure[]>(this.apiUrlProcedure, { headers: headers, params: params });
   }
 
+  deleteProcedure(procedureId: string): Observable<void> {
+    const url = this.apiUrlProcedure.concat(`/${procedureId}/disable`)
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.storage.get('token.bearer')}`)
+      .set('Content-Type', 'application/json');
+
+    const params = new HttpParams().set('userId', `${this.storage.get('user.id')}`);
+
+    return this.http.patch<void>(url, null, { headers: headers, params: params });
+  }
+
 }

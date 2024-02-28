@@ -7,6 +7,7 @@ import { LocalStorageService } from "../storage/local-storage.service";
 import { DateUtils } from "../../utils/date.utils";
 import { EnvironmentService } from "../environment-service";
 import { ApiUrls } from "../../../config/api-urls";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class LoginService extends EnvironmentService {
 
   apiUrlLogin: string = `${this.apiUrl.concat(ApiUrls.login)}`;
 
-  constructor(http: HttpClient, storage: LocalStorageService) {
+  constructor(http: HttpClient, storage: LocalStorageService, private router: Router) {
     super(http, storage);
   }
 
@@ -30,7 +31,21 @@ export class LoginService extends EnvironmentService {
   }
 
   logout(): void {
+    this.clearSessionData();
+    this.redirectToLogin();
+  }
+
+  clearSessionData(): void {
     this.storage.clear()
+  }
+
+  redirectToLogin(): void {
+    this.router.navigate(['/login']).then(() => false)
+  }
+
+  ifTokenExpiredThenRedirect(): void {
+    if (!this.isAuthenticated())
+      this.logout()
   }
 
 }

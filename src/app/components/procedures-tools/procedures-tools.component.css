@@ -51,10 +51,14 @@
 
 .search:hover {
   border-color: #4CAAFF;
+  border-width: 2px;
+  padding: 14px 14px 14px 44px;
 }
 
 .search:focus {
   border-color: #0078E5;
+  border-width: 2px;
+  padding: 14px 14px 14px 44px;
 }
 
 .button-add-procedure {
