@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ProcedureService } from "../../services/procedure/procedure.service";
 import { Procedure } from "../../models/procedure.model";
 import { CurrencyPipe, DatePipe, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
-import { DatePeriodService } from "../../services/date-period/date-period.service";
+import { DatePeriodEvent } from "../../events/date-period/date-period.event";
 import { DatePeriod } from "../../models/date-period.model";
 import { DeletePanelComponent } from "../delete-panel/delete-panel.component";
+import { LoginService } from "../../services/login/login.service";
 
 @Component({
   selector: 'app-procedures-table',
@@ -33,10 +34,10 @@ export class ProceduresTableComponent implements OnInit {
 
   selectedDate: DatePeriod = new DatePeriod();
 
-  constructor(private procedureService: ProcedureService, private datePeriodService: DatePeriodService) {}
+  constructor(private procedureService: ProcedureService, private loginService: LoginService, private datePeriodEvent: DatePeriodEvent) {}
 
   ngOnInit(): void {
-    this.datePeriodService.getSelectedDate().subscribe((selectedDate) => {
+    this.datePeriodEvent.getSelectedDate().subscribe((selectedDate) => {
       this.updateProcedureTable(selectedDate);
     });
   }
@@ -61,13 +62,24 @@ export class ProceduresTableComponent implements OnInit {
   }
 
   setProcedureToDeleteAndStartPanel(item: any): void {
-    this.procedureToDelete = item;
-    this.isDeletePanelOpen = true;
+    if (this.loginService.isTokenExpiredThenRedirect()) {
+      this.procedureToDelete = item;
+      this.isDeletePanelOpen = true;
+    }
+  }
+
+  //TODO: Ajustar na pagina de edição do procedimento
+  setProcedureToEditAndStartPanel(item: any): void {
+    if (this.loginService.isTokenExpiredThenRedirect()) {
+      // this.procedureToDelete = item;
+      // this.isDeletePanelOpen = true;
+    }
   }
 
   confirmDeleteProcedureAction(): void {
     this.procedureService.deleteProcedure(this.procedureToDelete.procedureId).subscribe(() => {
       this.updateProcedureTable(this.selectedDate);
+      this.updateProcedureSummary();
       this.closeDeletePanel();
     });
   }
@@ -86,6 +98,10 @@ export class ProceduresTableComponent implements OnInit {
       this.selectedDate = selectedDate;
       this.procedureList = procedureList;
     });
+  }
+
+  private updateProcedureSummary() {
+    this.datePeriodEvent.setSelectedDate(this.selectedDate);
   }
 
 }

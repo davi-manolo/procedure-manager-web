@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe, NgClass, NgIf, NgOptimizedImage } from "@angular/common";
 import { AccountingService } from "../../services/accounting/accounting.service";
-import { DatePeriodService } from "../../services/date-period/date-period.service";
+import { DatePeriodEvent } from "../../events/date-period/date-period.event";
 import { DatePeriod } from "../../models/date-period.model";
 import { DateUtils } from "../../utils/date.utils";
 
@@ -31,11 +31,11 @@ export class ProceduresSummaryComponent implements OnInit {
 
   selectedPreviousMonth = ''
 
-  constructor(private accountingService: AccountingService, private datePeriodService: DatePeriodService) {}
+  constructor(private accountingService: AccountingService, private datePeriodEvent: DatePeriodEvent) {}
 
   ngOnInit(): void {
-    this.datePeriodService.getSelectedDate().subscribe((selectedDate) => {
-      this.updateProcedureSummary(selectedDate);
+    this.datePeriodEvent.getSelectedDate().subscribe((datePeriodEvent) => {
+      this.updateProcedureSummary(datePeriodEvent);
     });
   }
 

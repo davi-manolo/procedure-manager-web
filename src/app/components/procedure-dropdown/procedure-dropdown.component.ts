@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { AsyncPipe, NgClass, NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import { BehaviorSubject } from "rxjs";
 import { DatePeriod } from "../../models/date-period.model";
-import { DatePeriodService } from "../../services/date-period/date-period.service";
+import { DatePeriodEvent } from "../../events/date-period/date-period.event";
 import { DateUtils } from "../../utils/date.utils";
 import { LoginService } from "../../services/login/login.service";
 
@@ -26,7 +26,7 @@ export class ProcedureDropdownComponent implements OnInit {
   selectedItemText = 'Selecione';
   selectedItemSubject = new BehaviorSubject<DatePeriod>(new DatePeriod());
 
-  constructor(private datePeriodService: DatePeriodService, private loginService: LoginService) {}
+  constructor(private datePeriodEvent: DatePeriodEvent, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.getMonths(3);
@@ -49,12 +49,13 @@ export class ProcedureDropdownComponent implements OnInit {
     this.selectedItemSubject.next(item);
     this.isOpen = false;
     this.selectedItemText = item.monthName;
-    this.datePeriodService.setSelectedDate(item);
+    this.datePeriodEvent.setSelectedDate(item);
   }
 
   toggleDropdown() {
-    this.loginService.ifTokenExpiredThenRedirect();
-    this.isOpen = !this.isOpen;
+    if (this.loginService.isTokenExpiredThenRedirect()) {
+      this.isOpen = !this.isOpen;
+    }
   }
 
   private getMonths(months: number) {

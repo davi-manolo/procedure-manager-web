@@ -5,7 +5,7 @@ import { DatePeriod } from "../../models/date-period.model";
 @Injectable({
   providedIn: 'root'
 })
-export class DatePeriodService {
+export class DatePeriodEvent {
 
   private selectedDateSubject = new BehaviorSubject<DatePeriod>(new DatePeriod());
 

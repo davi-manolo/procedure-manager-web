@@ -43,9 +43,13 @@ export class LoginService extends EnvironmentService {
     this.router.navigate(['/login']).then(() => false)
   }
 
-  ifTokenExpiredThenRedirect(): void {
-    if (!this.isAuthenticated())
+  isTokenExpiredThenRedirect(): boolean {
+    if (!this.isAuthenticated()) {
       this.logout()
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

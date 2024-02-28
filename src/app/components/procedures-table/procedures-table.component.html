@@ -21,7 +21,7 @@
       <td>{{ procedure.procedureValue | currency:'BRL':'symbol':'1.2-2' }}</td>
       <td>{{ procedure.valueReceived | currency:'BRL':'symbol':'1.2-2' }}</td>
       <td class="actions">
-        <button class="edit-button">
+        <button class="edit-button" (click)="setProcedureToEditAndStartPanel(procedure)">
           <img ngSrc="assets/images/icons/edit-procedure.svg" alt="Editar procedimento" width="14" height="14"/>
         </button>
         <button class="delete-button" (click)="setProcedureToDeleteAndStartPanel(procedure)">
