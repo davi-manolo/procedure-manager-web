@@ -6,6 +6,8 @@ import { DatePeriodEvent } from "../../events/date-period/date-period.event";
 import { DatePeriod } from "../../models/date-period.model";
 import { DeletePanelComponent } from "../delete-panel/delete-panel.component";
 import { LoginService } from "../../services/login/login.service";
+import { ProcedurePanelComponent } from "../procedure-panel/procedure-panel.component";
+import { TransportProcedureEvent } from "../../events/transport-procedure/transport-procedure.event";
 
 @Component({
   selector: 'app-procedures-table',
@@ -16,7 +18,8 @@ import { LoginService } from "../../services/login/login.service";
     DatePipe,
     NgOptimizedImage,
     NgIf,
-    DeletePanelComponent
+    DeletePanelComponent,
+    ProcedurePanelComponent
   ],
   templateUrl: './procedures-table.component.html',
   styleUrl: './procedures-table.component.css'
@@ -30,11 +33,18 @@ export class ProceduresTableComponent implements OnInit {
   currentPage = 1;
 
   isDeletePanelOpen: boolean = false;
-  procedureToDelete: any;
+  isProcedurePanelOpen: boolean = false;
+
+  procedureToDelete: Procedure | null = null;
 
   selectedDate: DatePeriod = new DatePeriod();
 
-  constructor(private procedureService: ProcedureService, private loginService: LoginService, private datePeriodEvent: DatePeriodEvent) {}
+  constructor(
+    private procedureService: ProcedureService,
+    private loginService: LoginService,
+    private datePeriodEvent: DatePeriodEvent,
+    private transportProcedureEvent: TransportProcedureEvent
+  ) {}
 
   ngOnInit(): void {
     this.datePeriodEvent.getSelectedDate().subscribe((selectedDate) => {
@@ -67,30 +77,28 @@ export class ProceduresTableComponent implements OnInit {
       this.isDeletePanelOpen = true;
     }
   }
-
-  //TODO: Ajustar na pagina de edição do procedimento
   setProcedureToEditAndStartPanel(item: any): void {
     if (this.loginService.isTokenExpiredThenRedirect()) {
-      // this.procedureToDelete = item;
-      // this.isDeletePanelOpen = true;
+      this.transportProcedureEvent.setSelectedProcedure(item)
+      this.isProcedurePanelOpen = true;
     }
   }
 
   confirmDeleteProcedureAction(): void {
-    this.procedureService.deleteProcedure(this.procedureToDelete.procedureId).subscribe(() => {
+    this.procedureService.deleteProcedure(this.procedureToDelete!.procedureId).subscribe(() => {
       this.updateProcedureTable(this.selectedDate);
       this.updateProcedureSummary();
       this.closeDeletePanel();
     });
   }
 
-  cancelDeleteProcedureAction(): void {
-    this.closeDeletePanel();
-  }
-
-  private closeDeletePanel(): void {
+  closeDeletePanel(): void {
     this.isDeletePanelOpen = false;
     this.procedureToDelete = null;
+  }
+
+  closeProcedurePanel(): void {
+    this.isProcedurePanelOpen = false;
   }
 
   private updateProcedureTable(selectedDate: DatePeriod) {
