@@ -1,7 +1,7 @@
 <div class="dropdown-container">
   <div class="dropdown-toggle" (click)="toggleDropdown()">
     <img ngSrc="assets/images/icons/list-gray.svg" alt="Novo Procedimento" height="24" width="24">
-    <span class="text-center">{{ selectedProcedureTypeName }}</span>
+    <span class="text-center">{{ selectedProcedureTypeName ? selectedProcedureTypeName : 'Selecione o tipo do procedimento' }}</span>
     <img ngSrc="assets/images/icons/dropdown-gray.svg" alt="Novo Procedimento" height="24" width="24">
   </div>
   <div class="dropdown-list" *ngIf="isOpen">

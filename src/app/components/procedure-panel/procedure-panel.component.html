@@ -18,7 +18,7 @@
       <div class="container">
         <img class="icon" ngSrc="assets/images/icons/tag.svg" alt="Novo Procedimento" height="24" width="24">
         <p class="icon-currency">R$</p>
-        <input class="input-value" type="text" [(ngModel)]="procedure.procedureValue" [value]="procedure.procedureValue" placeholder="0,00">
+        <input class="input-value" type="text" [(ngModel)]="procedure.procedureValue" [value]="procedure.procedureValue === 0 ? '' : procedure.procedureValue" placeholder="0,00">
       </div>
       <div>
         <app-procedure-type-dropdown (selectionChange)="handleSelectionChange($event)" [selectedProcedureTypeName]="procedure.procedureTypeName"></app-procedure-type-dropdown>
