@@ -11,7 +11,7 @@ describe('StartedComponent', () => {
       imports: [StartedComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(StartedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -20,4 +20,5 @@ describe('StartedComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

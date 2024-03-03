@@ -11,7 +11,7 @@ describe('UserPanelComponent', () => {
       imports: [UserPanelComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(UserPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

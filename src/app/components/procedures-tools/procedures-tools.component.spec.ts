@@ -11,7 +11,7 @@ describe('ProceduresToolsComponent', () => {
       imports: [ProceduresToolsComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ProceduresToolsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

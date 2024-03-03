@@ -11,7 +11,7 @@ describe('ProcedureTypeDropdownComponent', () => {
       imports: [ProcedureTypeDropdownComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ProcedureTypeDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

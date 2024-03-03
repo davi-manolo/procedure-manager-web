@@ -11,4 +11,5 @@ export const preventLoginGuard: CanActivateFn = () => {
   } else {
     return router.navigate(['/dashboard']).then(() => false);
   }
+
 };

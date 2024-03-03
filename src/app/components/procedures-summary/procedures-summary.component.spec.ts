@@ -11,7 +11,7 @@ describe('ProceduresSummaryComponent', () => {
       imports: [ProceduresSummaryComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ProceduresSummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

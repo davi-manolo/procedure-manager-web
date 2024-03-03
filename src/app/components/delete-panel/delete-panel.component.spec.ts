@@ -11,7 +11,7 @@ describe('DeletePanelComponent', () => {
       imports: [DeletePanelComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(DeletePanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

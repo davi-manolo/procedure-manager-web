@@ -1,16 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TransportProcedureEventService } from './transport-procedure.event';
+import { TransportProcedureEvent } from './transport-procedure.event';
 
-describe('TransportProcedureEventService', () => {
-  let service: TransportProcedureEventService;
+describe('TransportProcedureEvent', () => {
+  let service: TransportProcedureEvent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TransportProcedureEventService);
+    service = TestBed.inject(TransportProcedureEvent);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });
