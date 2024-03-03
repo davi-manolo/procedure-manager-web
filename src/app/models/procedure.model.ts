@@ -4,7 +4,7 @@ export class Procedure {
   procedureDate: string = '';
   customer: string = '';
   procedureTypeName: string = '';
-  procedureValue: number = 0.00;
-  valueReceived: number = 0.00
+  procedureValue: string = '';
+  valueReceived: string = ''
 
 }
