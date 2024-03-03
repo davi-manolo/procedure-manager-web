@@ -1,11 +1,11 @@
 <div class="dropdown-container">
   <div class="dropdown-toggle" (click)="toggleDropdown()">
     <img ngSrc="assets/images/icons/calendar.svg" alt="Novo Procedimento" height="24" width="24">
-    <span class="text-center">{{ selectedMonthText }}</span>
+    <span class="text-center">{{ selectedMonthName }}</span>
     <img ngSrc="assets/images/icons/dropdown.svg" alt="Novo Procedimento" height="24" width="24">
   </div>
   <div class="dropdown-list" *ngIf="isOpen">
-    <div *ngFor="let datePeriod of dropdownDatePeriods" (click)="selectItem(datePeriod)">
+    <div *ngFor="let datePeriod of dropdownDatePeriods" (click)="selectDatePeriod(datePeriod)">
       {{ datePeriod.monthName }} {{ datePeriod.year }}
     </div>
   </div>

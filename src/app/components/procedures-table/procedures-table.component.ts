@@ -48,7 +48,7 @@ export class ProceduresTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.datePeriodEvent.getSelectedDate().subscribe((selectedDate: DatePeriod): void => {
-      this.updateProcedureTable(selectedDate);
+      this.updateProcedureTableWithPeriodDate(selectedDate);
     });
   }
 
@@ -86,8 +86,7 @@ export class ProceduresTableComponent implements OnInit {
 
   confirmDeleteProcedureAction(): void {
     this.procedureService.deleteProcedure(this.procedureToDelete!.procedureId).subscribe((): void => {
-      this.updateProcedureTable(this.selectedDate);
-      this.updateProcedureSummary();
+      this.updateProcedureSummaryAndTable();
       this.closeDeletePanel();
     });
   }
@@ -95,19 +94,28 @@ export class ProceduresTableComponent implements OnInit {
   closeDeletePanel(): void {
     this.isDeletePanelOpen = false;
     this.procedureToDelete = null;
-    this.updateProcedureSummary();
-    this.updateProcedureTable(this.selectedDate);
+    this.updateProcedureSummaryAndTable();
   }
 
   closeProcedurePanel(): void {
     this.isProcedurePanelOpen = false;
-    this.updateProcedureSummary();
-    this.updateProcedureTable(this.selectedDate);
+    this.updateProcedureSummaryAndTable();
   }
 
-  private updateProcedureTable(selectedDate: DatePeriod): void {
-    this.procedureService.getProceduresByPeriod(selectedDate).subscribe((procedureList) => {
+  updateProcedureSummaryAndTable(): void {
+    this.updateProcedureSummary();
+    this.updateProcedureTable();
+  }
+
+  private updateProcedureTableWithPeriodDate(selectedDate: DatePeriod): void {
+    this.procedureService.getProceduresByPeriod(selectedDate).subscribe((procedureList): void => {
       this.selectedDate = selectedDate;
+      this.procedureList = procedureList;
+    });
+  }
+
+  private updateProcedureTable(): void {
+    this.procedureService.getProceduresByPeriod(this.selectedDate).subscribe((procedureList): void => {
       this.procedureList = procedureList;
     });
   }

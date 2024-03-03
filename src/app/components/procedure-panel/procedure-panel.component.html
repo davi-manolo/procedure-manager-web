@@ -21,7 +21,7 @@
         <input class="input-value" type="text" [(ngModel)]="procedure.procedureValue" [value]="procedure.procedureValue" placeholder="0,00">
       </div>
       <div>
-        <app-procedure-type-dropdown (selectionChange)="handleSelectionChange($event)" [selectedItemText]="procedure.procedureTypeName"></app-procedure-type-dropdown>
+        <app-procedure-type-dropdown (selectionChange)="handleSelectionChange($event)" [selectedProcedureTypeName]="procedure.procedureTypeName"></app-procedure-type-dropdown>
       </div>
     </div>
     <button class="update-button" (click)="sendProcedureToUpdate()" [disabled]="isProcedureValid()">{{ buttonTitle }}</button>

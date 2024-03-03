@@ -1,10 +1,10 @@
 <div class="dropdown-container">
   <div class="dropdown-toggle" (click)="toggleDropdown()">
     <img ngSrc="assets/images/icons/list-gray.svg" alt="Novo Procedimento" height="24" width="24">
-    <span class="text-center">{{ selectedItemText }}</span>
+    <span class="text-center">{{ selectedProcedureTypeName }}</span>
     <img ngSrc="assets/images/icons/dropdown-gray.svg" alt="Novo Procedimento" height="24" width="24">
   </div>
   <div class="dropdown-list" *ngIf="isOpen">
-    <div *ngFor="let item of procedureTypes" (click)="selectItem(item)">{{ item.name }}</div>
+    <div *ngFor="let procedureType of procedureTypes" (click)="selectProcedureType(procedureType)">{{ procedureType.name }}</div>
   </div>
 </div>

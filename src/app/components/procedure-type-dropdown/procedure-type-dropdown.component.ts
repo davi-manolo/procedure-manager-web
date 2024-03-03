@@ -19,13 +19,13 @@ import { TransportProcedureTypeEvent } from "../../events/transport-procedure-ty
 })
 export class ProcedureTypeDropdownComponent implements OnInit {
 
-  @Input() selectedItemText: string = 'Selecione o tipo de procedimento';
+  @Input() selectedProcedureTypeName: string = '';
 
-  @Output() selectionChange = new EventEmitter<string>();
+  @Output() selectionChange: EventEmitter<string>  = new EventEmitter<string>();
 
   isOpen: boolean = false;
   procedureTypes: ProcedureType[] = [];
-  selectedItemSubject: BehaviorSubject<ProcedureType> = new BehaviorSubject<ProcedureType>(new ProcedureType());
+  selectedProcedureTypeSubject: BehaviorSubject<ProcedureType> = new BehaviorSubject<ProcedureType>(new ProcedureType());
 
   constructor(
     private transportProcedureTypeEvent: TransportProcedureTypeEvent,
@@ -49,10 +49,10 @@ export class ProcedureTypeDropdownComponent implements OnInit {
     }
   }
 
-  selectItem(item: ProcedureType): void {
-    this.selectedItemSubject.next(item);
+  selectProcedureType(item: ProcedureType): void {
+    this.selectedProcedureTypeSubject.next(item);
     this.isOpen = false;
-    this.selectedItemText = item.name;
+    this.selectedProcedureTypeName = item.name;
     this.transportProcedureTypeEvent.setSelectedProcedureType(item);
     this.selectionChange.emit(item.name);
   }

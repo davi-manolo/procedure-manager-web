@@ -23,14 +23,14 @@ export class ProcedureDropdownComponent implements OnInit {
 
   isOpen: boolean = false;
   dropdownDatePeriods: DatePeriod[] = [];
-  selectedMonthText: string = '';
+  selectedMonthName: string = '';
   selectedDatePeriodSubject: BehaviorSubject<DatePeriod> = new BehaviorSubject<DatePeriod>(new DatePeriod());
 
   constructor(private datePeriodEvent: DatePeriodEvent, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.getMonths(3);
-    this.selectItem(this.dropdownDatePeriods[0]);
+    this.selectDatePeriod(this.dropdownDatePeriods[0]);
   }
 
   @HostListener('document:click', ['$event'])
@@ -45,10 +45,10 @@ export class ProcedureDropdownComponent implements OnInit {
     }
   }
 
-  selectItem(item: DatePeriod): void {
+  selectDatePeriod(item: DatePeriod): void {
     this.selectedDatePeriodSubject.next(item);
     this.isOpen = false;
-    this.selectedMonthText = item.monthName;
+    this.selectedMonthName = item.monthName;
     this.datePeriodEvent.setSelectedDate(item);
   }
 
