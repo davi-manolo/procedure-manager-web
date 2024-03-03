@@ -4,7 +4,7 @@ import { BehaviorSubject } from "rxjs";
 import { LoginService } from "../../services/login/login.service";
 import { ProcedureTypeService } from "../../services/procedure-type/procedure-type.service";
 import { ProcedureType } from "../../models/procedure-type.model";
-import { TransportProcedureTypeEvent } from "../../events/transport-procedure-type/transport-procedure-type-event";
+import { TransportProcedureTypeEvent } from "../../events/transport-procedure-type/transport-procedure-type.event";
 
 @Component({
   selector: 'app-procedure-type-dropdown',
