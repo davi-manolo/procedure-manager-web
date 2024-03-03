@@ -9,21 +9,21 @@
     <form (ngSubmit)="login()" [formGroup]="loginForm" #formDir="ngForm">
       <div class="input">
         <label for="email">Informe seu email *</label>
-        <img ngSrc="assets/images/icons/email.svg" alt="Email" class="icon" height="24" width="24"/>
+        <img class="icon" ngSrc="assets/images/icons/email.svg" alt="Email" height="24" width="24"/>
         <input type="email" id="email" placeholder="Email" formControlName="email" required/>
       </div>
       <div class="input">
         <label for="password">Digite sua senha *</label>
-        <img ngSrc="assets/images/icons/password.svg" alt="Senha" class="icon" height="24" width="24"/>
+        <img class="icon" ngSrc="assets/images/icons/password.svg" alt="Senha" height="24" width="24"/>
         <input type="password" id="password" placeholder="Senha" formControlName="password" required/>
       </div>
       <div>
         <input class="button" type="submit" value="Acessar Conta"/>
       </div>
-      <div *ngIf="formDir.submitted && email.invalid && password.invalid" class="error-message">
+      <div class="error-message" *ngIf="formDir.submitted && email.invalid && password.invalid">
         <p>Email e senha devem ser preenchidos!</p>
       </div>
-      <div *ngIf="errorMessage != null && formDir.submitted" class="error-message">
+      <div class="error-message" *ngIf="errorMessage != null && formDir.submitted">
         <p>{{errorMessage}}</p>
       </div>
     </form>

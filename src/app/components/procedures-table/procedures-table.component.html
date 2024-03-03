@@ -35,14 +35,14 @@
   </tbody>
 </table>
 <div class="pagination" *ngIf="procedureList.length != 0">
-  <button (click)="onPageChange(currentPage - 1)" [disabled]="isFirstPage()" class="previous-button">
+  <button class="previous-button" (click)="onPageChange(currentPage - 1)" [disabled]="isFirstPage()">
     <img ngSrc="assets/images/icons/arrow-left.svg" alt="Próximo" width="30" height="30"/>
     Anterior
   </button>
   <p class="tab">|</p>
   <span>{{ currentPage }} de {{ math.ceil(procedureList.length / itemsPerPage) }}</span>
   <p class="tab">|</p>
-  <button (click)="onPageChange(currentPage + 1)" [disabled]="isLastPage()" class="next-button">
+  <button class="next-button" (click)="onPageChange(currentPage + 1)" [disabled]="isLastPage()">
     Próximo
     <img ngSrc="assets/images/icons/arrow-right.svg" alt="Anterior" width="30" height="30"/>
   </button>
