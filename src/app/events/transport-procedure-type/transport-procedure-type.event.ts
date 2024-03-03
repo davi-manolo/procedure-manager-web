@@ -7,9 +7,9 @@ import { ProcedureType } from "../../models/procedure-type.model";
 })
 export class TransportProcedureTypeEvent {
 
-  private selectedProcedureTypeSubject = new BehaviorSubject<ProcedureType>(new ProcedureType());
+  private selectedProcedureTypeSubject: BehaviorSubject<ProcedureType> = new BehaviorSubject<ProcedureType>(new ProcedureType());
 
-  setSelectedProcedureType(item: ProcedureType) {
+  setSelectedProcedureType(item: ProcedureType): void {
     this.selectedProcedureTypeSubject.next(item);
   }
 

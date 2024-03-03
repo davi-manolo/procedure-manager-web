@@ -7,13 +7,13 @@ import { DatePeriod } from "../../models/date-period.model";
 })
 export class DatePeriodEvent {
 
-  private selectedDateSubject = new BehaviorSubject<DatePeriod>(new DatePeriod());
+  private selectedDateSubject: BehaviorSubject<DatePeriod> = new BehaviorSubject<DatePeriod>(new DatePeriod());
 
   getSelectedDate(): Observable<DatePeriod> {
     return this.selectedDateSubject.asObservable();
   }
 
-  setSelectedDate(datePeriod: DatePeriod) {
+  setSelectedDate(datePeriod: DatePeriod): void {
     this.selectedDateSubject.next(datePeriod);
   }
 

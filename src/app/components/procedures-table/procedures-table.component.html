@@ -40,7 +40,7 @@
     Anterior
   </button>
   <p class="tab">|</p>
-  <span>{{ currentPage }} de {{ Math.ceil(procedureList.length / itemsPerPage) }}</span>
+  <span>{{ currentPage }} de {{ math.ceil(procedureList.length / itemsPerPage) }}</span>
   <p class="tab">|</p>
   <button (click)="onPageChange(currentPage + 1)" [disabled]="isLastPage()" class="next-button">
     Próximo

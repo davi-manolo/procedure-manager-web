@@ -28,7 +28,7 @@ export class UserPanelComponent implements OnInit {
   }
 
   getGreetingMessage(): string {
-    const currentHour = new Date().getHours();
+    const currentHour: number = new Date().getHours();
     if (currentHour < 12) {
       return 'Bom dia';
     } else if (currentHour >= 12 && currentHour < 18) {

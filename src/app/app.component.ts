@@ -17,6 +17,6 @@ registerLocaleData(localePt);
 })
 export class AppComponent {
 
-  title = 'procedure-manager-web';
+  title: string = 'procedure-manager-web';
 
 }

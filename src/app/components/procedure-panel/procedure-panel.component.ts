@@ -8,6 +8,7 @@ import { ProcedureService } from "../../services/procedure/procedure.service";
 import { ProcedureTypeDropdownComponent } from "../procedure-type-dropdown/procedure-type-dropdown.component";
 import { TransportProcedureTypeEvent } from "../../events/transport-procedure-type/transport-procedure-type.event";
 import { DataProcedureRequest } from "../../models/data-procedure-request.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-procedure-panel',
@@ -40,7 +41,7 @@ export class ProcedurePanelComponent implements OnInit {
     private transportProcedureTypeEvent: TransportProcedureTypeEvent
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.isAddFlow) {
       this.transportProcedureEvent.selectedProcedure.subscribe(procedure => {
         this.procedure = procedure;
@@ -55,7 +56,7 @@ export class ProcedurePanelComponent implements OnInit {
     this.selectedProcedureTypeName = selectedProcedureTypeName;
   }
 
-  isProcedureValid() {
+  isProcedureValid(): boolean {
     return (
       !this.procedure ||
       !this.procedure.procedureDate ||
@@ -65,13 +66,13 @@ export class ProcedurePanelComponent implements OnInit {
     );
   }
 
-  sendProcedureToUpdate() {
+  sendProcedureToUpdate(): void {
     if (this.loginService.isTokenExpiredThenRedirect()) {
       this.dataProcedureRequest.procedureDate = this.procedure.procedureDate;
       this.dataProcedureRequest.customer = this.procedure.customer;
       this.dataProcedureRequest.value = this.procedure.procedureValue;
 
-      const procedureServiceMethod = this.isAddFlow
+      const procedureServiceMethod: Observable<void> = this.isAddFlow
         ? this.procedureService.addProcedure(this.dataProcedureRequest)
         : this.procedureService.updateProcedure(this.procedure.procedureId, this.dataProcedureRequest);
 

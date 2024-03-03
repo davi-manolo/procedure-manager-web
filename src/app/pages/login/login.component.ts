@@ -7,6 +7,8 @@ import { Login } from "../../models/login.model";
 import { NgClass, NgIf, NgOptimizedImage } from "@angular/common";
 import { UserService } from "../../services/user/user.service";
 import { mergeMap } from "rxjs";
+import { Token } from "../../models/token.model";
+import { User } from "../../models/user.model";
 
 @Component({
   selector: 'app-login',
@@ -41,10 +43,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async login() {
+  async login(): Promise<void> {
     if (!this.loginForm.invalid) {
       this.loginService.login(this.loginForm.value).pipe(
-        mergeMap((token) => {
+        mergeMap((token: Token) => {
           this.localStorage.set('token.expiration', token.expiration);
           this.localStorage.set('token.bearer', token.bearer);
           this.localStorage.set('user.email', this.loginForm.get('email')?.value);
@@ -53,11 +55,11 @@ export class LoginComponent implements OnInit {
         })
       ).subscribe(
         {
-          next: (user) => {
+          next: (user: User): void => {
             this.localStorage.set('user.id', user.userId);
             this.router.navigate(['/dashboard']);
           },
-          error: () => this.errorMessage = 'Email ou senha inválidos!'
+          error: (): string => this.errorMessage = 'Email ou senha inválidos!'
         }
       );
     }

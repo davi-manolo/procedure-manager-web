@@ -14,15 +14,15 @@ import { Router } from "@angular/router";
 })
 export class LoginService extends EnvironmentService {
 
-  apiUrlLogin: string = `${this.apiUrl.concat(ApiUrls.login)}`;
+  private apiUrlLogin: string = `${this.apiUrl.concat(ApiUrls.login)}`;
 
   constructor(http: HttpClient, storage: LocalStorageService, private router: Router) {
     super(http, storage);
   }
 
   isAuthenticated(): boolean {
-    const expiration = Number(this.storage.get('token.expiration'));
-    const bearer = this.storage.get('token.bearer');
+    const expiration: number = Number(this.storage.get('token.expiration'));
+    const bearer: string = this.storage.get('token.bearer');
     return !!bearer && !DateUtils.isExpired(expiration);
   }
 
@@ -40,7 +40,7 @@ export class LoginService extends EnvironmentService {
   }
 
   redirectToLogin(): void {
-    this.router.navigate(['/login']).then(() => false)
+    this.router.navigate(['/login']).then((): boolean => false)
   }
 
   isTokenExpiredThenRedirect(): boolean {

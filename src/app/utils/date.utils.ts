@@ -3,18 +3,18 @@ import { DatePeriod } from "../models/date-period.model";
 export class DateUtils {
 
   static isExpired(milliseconds: number): boolean {
-    const currentDateTime = DateTime.now();
-    const targetDateTime = DateTime.fromMillis(milliseconds);
+    const currentDateTime: DateTime<true> = DateTime.now();
+    const targetDateTime: DateTime<true> | DateTime<false> = DateTime.fromMillis(milliseconds);
     return targetDateTime <= currentDateTime;
   }
 
   static getMonthNameByDate(date: Date): string {
-    const monthName = date.toLocaleString('pt-BR', { month: 'long' });
+    const monthName: string = date.toLocaleString('pt-BR', { month: 'long' });
     return monthName.charAt(0).toUpperCase() + monthName.slice(1);
   }
 
   static getMonthNameByDatePeriod(datePeriod: DatePeriod): string {
-    const date = this.datePeriodToDate(datePeriod);
+    const date: Date = this.datePeriodToDate(datePeriod);
     return this.getMonthNameByDate(date);
   }
 

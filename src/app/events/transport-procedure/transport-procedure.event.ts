@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import { Procedure } from "../../models/procedure.model";
 
 @Injectable({
@@ -7,10 +7,10 @@ import { Procedure } from "../../models/procedure.model";
 })
 export class TransportProcedureEvent {
 
-  private selectedProcedureSubject = new BehaviorSubject<Procedure>(new Procedure());
-  selectedProcedure = this.selectedProcedureSubject.asObservable();
+  private selectedProcedureSubject: BehaviorSubject<Procedure> = new BehaviorSubject<Procedure>(new Procedure());
+  selectedProcedure: Observable<any> = this.selectedProcedureSubject.asObservable();
 
-  setSelectedProcedure(item: Procedure) {
+  setSelectedProcedure(item: Procedure): void {
     this.selectedProcedureSubject.next(item);
   }
 

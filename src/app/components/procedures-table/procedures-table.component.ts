@@ -26,11 +26,11 @@ import { TransportProcedureEvent } from "../../events/transport-procedure/transp
 })
 export class ProceduresTableComponent implements OnInit {
 
-  protected readonly Math = Math;
+  protected readonly math: Math = Math;
 
   procedureList: Procedure[] = []
-  itemsPerPage = 15;
-  currentPage = 1;
+  itemsPerPage: number = 15;
+  currentPage: number = 1;
 
   isDeletePanelOpen: boolean = false;
   isProcedurePanelOpen: boolean = false;
@@ -47,27 +47,27 @@ export class ProceduresTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.datePeriodEvent.getSelectedDate().subscribe((selectedDate) => {
+    this.datePeriodEvent.getSelectedDate().subscribe((selectedDate: DatePeriod): void => {
       this.updateProcedureTable(selectedDate);
     });
   }
 
-  onPageChange(newPage: number) {
+  onPageChange(newPage: number): void {
     this.currentPage = newPage;
   }
 
-  isFirstPage() {
+  isFirstPage(): boolean {
     return this.currentPage === 1;
   }
 
-  isLastPage() {
+  isLastPage(): boolean {
     const pageCount = Math.ceil(this.procedureList.length / this.itemsPerPage);
     return this.currentPage === pageCount;
   }
 
   get paginatedItems() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
+    const startIndex: number = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex: number = startIndex + this.itemsPerPage;
     return this.procedureList.slice(startIndex, endIndex);
   }
 
@@ -85,7 +85,7 @@ export class ProceduresTableComponent implements OnInit {
   }
 
   confirmDeleteProcedureAction(): void {
-    this.procedureService.deleteProcedure(this.procedureToDelete!.procedureId).subscribe(() => {
+    this.procedureService.deleteProcedure(this.procedureToDelete!.procedureId).subscribe((): void => {
       this.updateProcedureTable(this.selectedDate);
       this.updateProcedureSummary();
       this.closeDeletePanel();
@@ -105,14 +105,14 @@ export class ProceduresTableComponent implements OnInit {
     this.updateProcedureTable(this.selectedDate);
   }
 
-  private updateProcedureTable(selectedDate: DatePeriod) {
+  private updateProcedureTable(selectedDate: DatePeriod): void {
     this.procedureService.getProceduresByPeriod(selectedDate).subscribe((procedureList) => {
       this.selectedDate = selectedDate;
       this.procedureList = procedureList;
     });
   }
 
-  private updateProcedureSummary() {
+  private updateProcedureSummary(): void {
     this.datePeriodEvent.setSelectedDate(this.selectedDate);
   }
 

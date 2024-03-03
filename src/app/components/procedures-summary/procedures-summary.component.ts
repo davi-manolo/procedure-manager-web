@@ -19,27 +19,27 @@ import { DateUtils } from "../../utils/date.utils";
 })
 export class ProceduresSummaryComponent implements OnInit {
 
-  totalReceivedAvg = 0;
-  totalProcedureAmountAvg = 0;
-  totalProcedureAmount = 0;
-  totalReceived = 0;
+  totalReceivedAvg: number = 0;
+  totalProcedureAmountAvg: number = 0;
+  totalProcedureAmount: number = 0;
+  totalReceived: number = 0;
 
-  totalReceivedAvgPrev = 0;
-  totalProcedureAmountAvgPrev = 0;
-  totalProcedureAmountPrev = 0;
-  totalReceivedPrev = 0;
+  totalReceivedAvgPrev: number = 0;
+  totalProcedureAmountAvgPrev: number = 0;
+  totalProcedureAmountPrev: number = 0;
+  totalReceivedPrev: number = 0;
 
-  selectedPreviousMonth = ''
+  selectedPreviousMonth: string = ''
 
   constructor(private accountingService: AccountingService, private datePeriodEvent: DatePeriodEvent) {}
 
   ngOnInit(): void {
-    this.datePeriodEvent.getSelectedDate().subscribe((datePeriodEvent) => {
+    this.datePeriodEvent.getSelectedDate().subscribe((datePeriodEvent): void => {
       this.updateProcedureSummary(datePeriodEvent);
     });
   }
 
-  private updateProcedureSummary(selectedDate: DatePeriod) {
+  private updateProcedureSummary(selectedDate: DatePeriod): void {
     this.accountingService.getTotalReceivedAvg(selectedDate).subscribe(
       totalReceivedAvg => this.totalReceivedAvg = totalReceivedAvg)
     this.accountingService.getTotalProceduresPerformedAvg(selectedDate).subscribe(

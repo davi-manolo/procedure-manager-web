@@ -21,10 +21,10 @@ import { LoginService } from "../../services/login/login.service";
 })
 export class ProcedureDropdownComponent implements OnInit {
 
-  isOpen = false;
+  isOpen: boolean = false;
   dropdownItems: DatePeriod[] = [];
-  selectedItemText = 'Selecione';
-  selectedItemSubject = new BehaviorSubject<DatePeriod>(new DatePeriod());
+  selectedItemText: string = 'Selecione';
+  selectedItemSubject: BehaviorSubject<DatePeriod> = new BehaviorSubject<DatePeriod>(new DatePeriod());
 
   constructor(private datePeriodEvent: DatePeriodEvent, private loginService: LoginService) {}
 
@@ -34,35 +34,35 @@ export class ProcedureDropdownComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  handleClickOutside(event: Event) {
+  handleClickOutside(event: Event): void {
     if (!this.isOpen) {
       return;
     }
 
-    const clickedElement = event.target as HTMLElement;
+    const clickedElement: HTMLElement = event.target as HTMLElement;
     if (!clickedElement.closest('.dropdown-container')) {
       this.isOpen = false;
     }
   }
 
-  selectItem(item: DatePeriod) {
+  selectItem(item: DatePeriod): void {
     this.selectedItemSubject.next(item);
     this.isOpen = false;
     this.selectedItemText = item.monthName;
     this.datePeriodEvent.setSelectedDate(item);
   }
 
-  toggleDropdown() {
+  toggleDropdown(): void {
     if (this.loginService.isTokenExpiredThenRedirect()) {
       this.isOpen = !this.isOpen;
     }
   }
 
-  private getMonths(months: number) {
-    const today = new Date();
+  private getMonths(months: number): void {
+    const today: Date = new Date();
 
-    for (let i = 0; i < months; i++) {
-      const previousMonth = new Date(today);
+    for (let i: number = 0; i < months; i++) {
+      const previousMonth: Date = new Date(today);
       previousMonth.setMonth(today.getMonth() - i);
 
       const datePeriod: DatePeriod = {
