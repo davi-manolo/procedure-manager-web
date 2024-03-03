@@ -6,6 +6,7 @@ import { LocalStorageService } from "../storage/local-storage.service";
 import { EnvironmentService } from "../environment-service";
 import { ApiUrls } from "../../../config/api-urls";
 import { DatePeriod } from "../../models/date-period.model";
+import { DataProcedureRequest } from "../../models/data-procedure-request.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,16 @@ export class ProcedureService extends EnvironmentService {
 
   constructor(http: HttpClient, storage: LocalStorageService) {
     super(http, storage);
+  }
+
+  addProcedure(dataProcedureRequest: DataProcedureRequest): Observable<void> {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.storage.get('token.bearer')}`)
+      .set('Content-Type', 'application/json');
+
+    dataProcedureRequest.userId = this.storage.get('user.id');
+
+    return this.http.post<void>(this.apiUrlProcedure, dataProcedureRequest, { headers: headers });
   }
 
   getProceduresByPeriod(datePeriod: DatePeriod): Observable<Procedure[]> {
@@ -29,6 +40,18 @@ export class ProcedureService extends EnvironmentService {
       .set('year', datePeriod.year);
 
     return this.http.get<Procedure[]>(this.apiUrlProcedure, { headers: headers, params: params });
+  }
+
+  updateProcedure(procedureId: string, dataProcedureRequest: DataProcedureRequest): Observable<void> {
+    const url = this.apiUrlProcedure.concat(`/${procedureId}/update`)
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.storage.get('token.bearer')}`)
+      .set('Content-Type', 'application/json');
+
+    dataProcedureRequest.userId = this.storage.get('user.id');
+
+    return this.http.patch<void>(url, dataProcedureRequest, { headers: headers });
   }
 
   deleteProcedure(procedureId: string): Observable<void> {

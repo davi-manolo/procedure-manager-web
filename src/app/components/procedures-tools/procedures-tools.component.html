@@ -1,3 +1,6 @@
+<!--Painel de adição do procedimento -->
+<app-procedure-panel *ngIf="isProcedurePanelOpen" [isAddFlow]="true" [title]="'Editar Procedimento'" [buttonTitle]="'Salvar Edição'" (close)="closeProcedurePanel()"></app-procedure-panel>
+
 <div class="tools">
   <div class="actions">
     <app-procedure-dropdown></app-procedure-dropdown>
@@ -19,7 +22,7 @@
     <img class="search-icon" ngSrc="assets/images/icons/search.svg" alt="Novo Procedimento" height="22" width="22">
     <input type="search" class="search" placeholder="Pesquisar">
   </div>
-  <button class="button-add-procedure">
+  <button class="button-add-procedure" (click)="newProcedureToAddAndStartPanel()">
     <img ngSrc="assets/images/icons/add.svg" alt="Novo Procedimento" height="22" width="22">
     Novo Procedimento
   </button>

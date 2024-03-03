@@ -1,4 +1,4 @@
-.edit-panel {
+.procedure-panel {
   display: flex;
   width: 680px;
   height: 395px;
@@ -16,7 +16,7 @@
   display: inline-flex;
 }
 
-.edit-panel > .header > h1 {
+.procedure-panel > .header > h1 {
   width: 100%;
   color: #272937;
   font-size: 32px;
@@ -26,7 +26,7 @@
   letter-spacing: -1px;
 }
 
-.edit-panel > p {
+.procedure-panel > p {
   width: 100%;
   color: #272937;
   font-size: 16px;
@@ -71,8 +71,11 @@
   background: #0078E5;
 }
 
-.update-button:disabled {
+.update-button:disabled, .update-button:hover:disabled, .update-button:active:disabled {
   cursor: not-allowed;
+  background: #EAEAEC;
+  border: 1px solid #D2D3D6;
+  color: #A5A6AB;
 }
 
 .container {
@@ -84,6 +87,19 @@
   top: 50%;
   left: 14px;
   transform: translateY(-50%);
+}
+
+.icon-currency {
+  position: absolute;
+  top: 50%;
+  left: 45px;
+  transform: translateY(-50%);
+  color: #272937;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: -0.6px;
 }
 
 .input-date, .input-procedure-type, .input-costumer, .input-value {
@@ -123,6 +139,14 @@
   border-color: #0078E5;
   border-width: 2px;
   padding: 14px 14px 14px 44px;
+}
+
+.input-value {
+  padding-left: 66px;
+}
+
+.input-value:hover, .input-value:focus {
+  padding-left: 65px;
 }
 
 .input-date, .input-date:hover, .input-date:active, .input-date:focus {

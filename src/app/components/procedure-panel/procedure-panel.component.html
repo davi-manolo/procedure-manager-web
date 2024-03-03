@@ -1,5 +1,5 @@
 <div class="base-blur">
-  <div class="edit-panel">
+  <div class="procedure-panel">
     <div class="header">
       <h1>{{ title }}</h1>
       <button class="close-button" (click)="closePanel()">
@@ -9,21 +9,21 @@
     <div class="inputs">
       <div class="container">
         <img class="icon" ngSrc="assets/images/icons/calendar-gray.svg" alt="Novo Procedimento" height="24" width="24">
-        <input class="input-date" type="date" value="{{ procedure?.procedureDate }}">
+        <input class="input-date" type="date" [(ngModel)]="procedure.procedureDate" [value]="procedure.procedureDate">
       </div>
       <div class="container">
         <img class="icon" ngSrc="assets/images/icons/costumer.svg" alt="Novo Procedimento" height="24" width="24">
-        <input class="input-costumer" type="text" value="{{ procedure?.customer }}" placeholder="Qual o nome do cliente?">
+        <input class="input-costumer" type="text" [(ngModel)]="procedure.customer" [value]="procedure.customer" placeholder="Qual o nome do cliente?">
       </div>
       <div class="container">
         <img class="icon" ngSrc="assets/images/icons/tag.svg" alt="Novo Procedimento" height="24" width="24">
-        <input class="input-value" type="text" value="{{ procedure?.procedureValue | currency:'BRL':'symbol':'1.2-2' }}" placeholder="0,00">
+        <p class="icon-currency">R$</p>
+        <input class="input-value" type="text" [(ngModel)]="procedure.procedureValue" [value]="procedure.procedureValue" placeholder="0,00">
       </div>
-      <div class="container">
-        <img class="icon" ngSrc="assets/images/icons/list-gray.svg" alt="Novo Procedimento" height="24" width="24">
-        <input class="input-procedure-type" type="text" value="{{ procedure?.procedureTypeName }}" placeholder="Tipo de Procedimento">
+      <div>
+        <app-procedure-type-dropdown (selectionChange)="handleSelectionChange($event)" [selectedItemText]="procedure.procedureTypeName"></app-procedure-type-dropdown>
       </div>
     </div>
-    <button class="update-button">{{ buttonTitle }}</button>
+    <button class="update-button" (click)="sendProcedureToUpdate()" [disabled]="isProcedureValid()">{{ buttonTitle }}</button>
   </div>
 </div>

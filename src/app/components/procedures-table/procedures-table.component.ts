@@ -95,10 +95,14 @@ export class ProceduresTableComponent implements OnInit {
   closeDeletePanel(): void {
     this.isDeletePanelOpen = false;
     this.procedureToDelete = null;
+    this.updateProcedureSummary();
+    this.updateProcedureTable(this.selectedDate);
   }
 
   closeProcedurePanel(): void {
     this.isProcedurePanelOpen = false;
+    this.updateProcedureSummary();
+    this.updateProcedureTable(this.selectedDate);
   }
 
   private updateProcedureTable(selectedDate: DatePeriod) {
