@@ -2,7 +2,7 @@
 <app-delete-panel *ngIf="isDeletePanelOpen" (confirm)="confirmDeleteProcedureAction()" (cancel)="closeDeletePanel()"></app-delete-panel>
 
 <!--Painel de edição do procedimento -->
-<app-procedure-panel *ngIf="isProcedurePanelOpen" [isAddFlow]="false" [title]="'Novo Procedimento'" [buttonTitle]="'Adicionar'" (close)="closeProcedurePanel()"></app-procedure-panel>
+<app-procedure-panel *ngIf="isProcedurePanelOpen" [isAddFlow]="false" [title]="'Editar Procedimento'" [buttonTitle]="'Salvar Edição'" (close)="closeProcedurePanel()"></app-procedure-panel>
 
 <table *ngIf="procedureList.length != 0">
   <caption class="sr-only">Descrição da Tabela</caption>
