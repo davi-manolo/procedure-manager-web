@@ -8,7 +8,7 @@ import { ProcedureService } from "../../services/procedure/procedure.service";
 import { ProcedureTypeDropdownComponent } from "../procedure-type-dropdown/procedure-type-dropdown.component";
 import { TransportProcedureTypeEvent } from "../../events/transport-procedure-type/transport-procedure-type.event";
 import { DataProcedureRequest } from "../../models/data-procedure-request.model";
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-procedure-panel',
