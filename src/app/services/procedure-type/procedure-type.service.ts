@@ -23,7 +23,7 @@ export class ProcedureTypeService extends EnvironmentService {
 
     return this.http.get<ProcedureType[]>(
       this.apiUrlProcedureType,
-      { headers: this.defaultHeaders, params: params }
+      { headers: this.getDefaultHeaders(), params: params }
     );
   }
 

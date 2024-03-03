@@ -18,98 +18,50 @@ export class AccountingService extends EnvironmentService {
   }
 
   getTotalReceivedAvg(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
-      .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', datePeriod.month)
-      .set('year', datePeriod.year);
-
-    return this.http.get<number>(
-      this.apiUrlAccounting.concat('/current/received/average'),
-      { headers: this.defaultHeaders, params: params }
-    );
+    return this.makeHttpRequest('current/received/average', datePeriod);
   }
 
   getTotalProceduresPerformedAvg(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
-      .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', datePeriod.month)
-      .set('year', datePeriod.year);
-
-    return this.http.get<number>(
-      this.apiUrlAccounting.concat('/current/amount/average'),
-      { headers: this.defaultHeaders, params: params }
-    );
+    return this.makeHttpRequest('current/amount/average', datePeriod);
   }
 
   getTotalProceduresPerformed(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
-      .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', datePeriod.month)
-      .set('year', datePeriod.year);
-
-    return this.http.get<number>(
-      this.apiUrlAccounting.concat('/current/amount'),
-      { headers: this.defaultHeaders, params: params }
-    );
+    return this.makeHttpRequest('current/amount', datePeriod);
   }
 
   getTotalReceived(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
-      .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', datePeriod.month)
-      .set('year', datePeriod.year);
-
-    return this.http.get<number>(
-      this.apiUrlAccounting.concat('/current/received'),
-      { headers: this.defaultHeaders, params: params }
-    );
+    return this.makeHttpRequest('current/received', datePeriod);
   }
 
   getTotalReceivedAvgPrevious(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
-      .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', datePeriod.month)
-      .set('year', datePeriod.year);
-
-    return this.http.get<number>(
-      this.apiUrlAccounting.concat('/previous/received/average'),
-      { headers: this.defaultHeaders, params: params }
-    );
+    return this.makeHttpRequest('previous/received/average', datePeriod);
   }
 
   getTotalProceduresPerformedAvgPrevious(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
-      .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', datePeriod.month)
-      .set('year', datePeriod.year);
-
-    return this.http.get<number>(
-      this.apiUrlAccounting.concat('/previous/amount/average'),
-      { headers: this.defaultHeaders, params: params }
-    );
+    return this.makeHttpRequest('previous/amount/average', datePeriod);
   }
 
   getTotalProceduresPerformedPrevious(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
-      .set('userId', `${this.storage.get('user.id')}`)
-      .set('month', datePeriod.month)
-      .set('year', datePeriod.year);
-
-    return this.http.get<number>(
-      this.apiUrlAccounting.concat('/previous/amount'),
-      { headers: this.defaultHeaders, params: params }
-    );
+    return this.makeHttpRequest('previous/amount', datePeriod);
   }
 
   getTotalReceivedPrevious(datePeriod: DatePeriod): Observable<number> {
-    const params: HttpParams = new HttpParams()
+    return this.makeHttpRequest('previous/received', datePeriod);
+  }
+
+  private buildParams(datePeriod: DatePeriod): HttpParams {
+    return new HttpParams()
       .set('userId', `${this.storage.get('user.id')}`)
       .set('month', datePeriod.month)
       .set('year', datePeriod.year);
+  }
+
+  private makeHttpRequest(endpoint: string, datePeriod: DatePeriod): Observable<number> {
+    const params: HttpParams = this.buildParams(datePeriod);
 
     return this.http.get<number>(
-      this.apiUrlAccounting.concat('/previous/received'),
-      { headers: this.defaultHeaders, params: params }
+      `${this.apiUrlAccounting}/${endpoint}`,
+      { headers: this.getDefaultHeaders(), params: params }
     );
   }
 

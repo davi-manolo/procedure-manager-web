@@ -25,7 +25,7 @@ export class ProcedureService extends EnvironmentService {
     return this.http.post<void>(
       this.apiUrlProcedure,
       dataProcedureRequest,
-      { headers: this.defaultHeaders }
+      { headers: this.getDefaultHeaders() }
     );
   }
 
@@ -37,7 +37,7 @@ export class ProcedureService extends EnvironmentService {
 
     return this.http.get<Procedure[]>(
       this.apiUrlProcedure,
-      { headers: this.defaultHeaders, params: params }
+      { headers: this.getDefaultHeaders(), params: params }
     );
   }
 
@@ -46,7 +46,7 @@ export class ProcedureService extends EnvironmentService {
 
     dataProcedureRequest.userId = this.storage.get('user.id');
 
-    return this.http.patch<void>(url, dataProcedureRequest, { headers: this.defaultHeaders });
+    return this.http.patch<void>(url, dataProcedureRequest, { headers: this.getDefaultHeaders() });
   }
 
   deleteProcedure(procedureId: string): Observable<void> {
@@ -54,7 +54,7 @@ export class ProcedureService extends EnvironmentService {
 
     const params: HttpParams = new HttpParams().set('userId', `${this.storage.get('user.id')}`);
 
-    return this.http.patch<void>(url, null, { headers: this.defaultHeaders, params: params });
+    return this.http.patch<void>(url, null, { headers: this.getDefaultHeaders(), params: params });
   }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {HttpClient, HttpParams } from "@angular/common/http";
 import { User } from "../../models/user.model";
 import { Observable } from "rxjs";
 import { LocalStorageService } from "../storage/local-storage.service";
@@ -21,7 +21,7 @@ export class UserService extends EnvironmentService {
     const params: HttpParams = new HttpParams()
       .set('userMail', `${this.storage.get('user.email')}`);
 
-    return this.http.get<User>(this.apiUrlUsers, { headers: this.defaultHeaders, params: params });
+    return this.http.get<User>(this.apiUrlUsers, { headers: this.getDefaultHeaders(), params: params });
   }
 
 }
