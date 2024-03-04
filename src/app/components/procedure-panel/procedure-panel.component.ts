@@ -9,6 +9,7 @@ import { ProcedureTypeDropdownComponent } from "../procedure-type-dropdown/proce
 import { TransportProcedureTypeEvent } from "../../events/transport-procedure-type/transport-procedure-type.event";
 import { DataProcedureRequest } from "../../models/data-procedure-request.model";
 import { Observable } from "rxjs";
+import { UpdateProcedureTableEvent } from "../../events/update-procedure-table/update-procedure-table.event";
 
 @Component({
   selector: 'app-procedure-panel',
@@ -38,7 +39,8 @@ export class ProcedurePanelComponent implements OnInit {
     private loginService: LoginService,
     private procedureService: ProcedureService,
     private transportProcedureEvent: TransportProcedureEvent,
-    private transportProcedureTypeEvent: TransportProcedureTypeEvent
+    private transportProcedureTypeEvent: TransportProcedureTypeEvent,
+    private updateProcedureTableEvent: UpdateProcedureTableEvent
   ) {}
 
   ngOnInit(): void {
@@ -58,11 +60,10 @@ export class ProcedurePanelComponent implements OnInit {
 
   isProcedureValid(): boolean {
     return (
-      !this.procedure ||
-      !this.procedure.procedureDate ||
-      !this.procedure.customer ||
-      !this.procedure.procedureValue ||
-      this.selectedProcedureTypeName == ''
+      !this.procedure?.procedureDate ||
+      !this.procedure?.customer ||
+      !this.procedure?.procedureValue ||
+      this.selectedProcedureTypeName === ''
     );
   }
 
@@ -76,8 +77,15 @@ export class ProcedurePanelComponent implements OnInit {
         ? this.procedureService.addProcedure(this.dataProcedureRequest)
         : this.procedureService.updateProcedure(this.procedure.procedureId, this.dataProcedureRequest);
 
-      procedureServiceMethod.subscribe(() => this.closePanel());
+      procedureServiceMethod.subscribe((): void => {
+        this.onNewProcedureAdded();
+        this.closePanel()
+      });
     }
+  }
+
+  onNewProcedureAdded(): void {
+    this.updateProcedureTableEvent.procedureAdded();
   }
 
   closePanel(): void {

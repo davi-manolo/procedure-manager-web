@@ -8,6 +8,7 @@ import { DeletePanelComponent } from "../delete-panel/delete-panel.component";
 import { LoginService } from "../../services/login/login.service";
 import { ProcedurePanelComponent } from "../procedure-panel/procedure-panel.component";
 import { TransportProcedureEvent } from "../../events/transport-procedure/transport-procedure.event";
+import { UpdateProcedureTableEvent } from "../../events/update-procedure-table/update-procedure-table.event";
 
 @Component({
   selector: 'app-procedures-table',
@@ -43,12 +44,16 @@ export class ProceduresTableComponent implements OnInit {
     private procedureService: ProcedureService,
     private loginService: LoginService,
     private datePeriodEvent: DatePeriodEvent,
-    private transportProcedureEvent: TransportProcedureEvent
+    private transportProcedureEvent: TransportProcedureEvent,
+    private updateProcedureTableEvent: UpdateProcedureTableEvent
   ) {}
 
   ngOnInit(): void {
     this.datePeriodEvent.getSelectedDate().subscribe((selectedDate: DatePeriod): void => {
       this.updateProcedureTableWithPeriodDate(selectedDate);
+    });
+    this.updateProcedureTableEvent.procedureAdded$.subscribe((): void => {
+      this.updateProcedureSummaryAndTable();
     });
   }
 
@@ -61,7 +66,7 @@ export class ProceduresTableComponent implements OnInit {
   }
 
   isLastPage(): boolean {
-    const pageCount = Math.ceil(this.procedureList.length / this.itemsPerPage);
+    const pageCount: number = Math.ceil(this.procedureList.length / this.itemsPerPage);
     return this.currentPage === pageCount;
   }
 
