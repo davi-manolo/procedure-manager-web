@@ -7,7 +7,7 @@ export class DatePeriod {
   monthName: string
 
   constructor() {
-    const dateNow = new Date();
+    const dateNow: Date = new Date();
     this.month = dateNow.getMonth() + 1;
     this.year = dateNow.getFullYear();
     this.monthName = DateUtils.getMonthNameByDate(dateNow);

@@ -107,6 +107,12 @@ export class ProceduresTableComponent implements OnInit {
     this.updateProcedureTable();
   }
 
+  isDisableActionButtons(): boolean {
+    const datePeriodCurrent: DatePeriod = new DatePeriod();
+    return datePeriodCurrent.month === this.selectedDate.month &&
+           datePeriodCurrent.year === this.selectedDate.year;
+  }
+
   private updateProcedureTableWithPeriodDate(selectedDate: DatePeriod): void {
     this.procedureService.getProceduresByPeriod(selectedDate).subscribe((procedureList): void => {
       this.selectedDate = selectedDate;

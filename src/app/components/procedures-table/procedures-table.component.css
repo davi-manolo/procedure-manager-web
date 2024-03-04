@@ -145,6 +145,12 @@ tr:last-child td {
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+.edit-button:disabled, .delete-button:disabled,
+.edit-button:disabled:hover, .delete-button:disabled:hover {
+  background: #FAFAFA;
+  cursor: not-allowed;
+}
+
 .edit-button > img, .delete-button > img {
   margin-top: 2px;
 }

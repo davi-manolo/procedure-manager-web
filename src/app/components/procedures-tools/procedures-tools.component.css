@@ -89,6 +89,13 @@
   background: #0078E5;
 }
 
+.button-add-procedure:disabled, .button-add-procedure:disabled:hover {
+  cursor: not-allowed;
+  background: #EAEAEC;
+  border: 1px solid #D2D3D6;
+  color: #A5A6AB;
+}
+
 .button-procedures-type, .button-send, .button-download {
   cursor: pointer;
   padding: 10px;
