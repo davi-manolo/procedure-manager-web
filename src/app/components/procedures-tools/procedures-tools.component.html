@@ -1,10 +1,13 @@
+<!--Painel de tipos de procedimentos -->
+<app-procedure-type-panel *ngIf="isProcedureTypePanelOpen"></app-procedure-type-panel>
+
 <!--Painel de adição do procedimento -->
 <app-procedure-panel *ngIf="isProcedurePanelOpen" [isAddFlow]="true" [title]="'Novo Procedimento'" [buttonTitle]="'Adicionar'" (close)="closeProcedurePanel()"></app-procedure-panel>
 
 <div class="tools">
   <div class="actions">
     <app-procedure-dropdown></app-procedure-dropdown>
-    <button class="button-procedures-type">
+    <button class="button-procedures-type" (click)="procedureTypeStartPanel()">
       <img ngSrc="assets/images/icons/list.svg" alt="Novo Procedimento" height="22" width="22">
       Tipos de Procedimentos
     </button>

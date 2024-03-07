@@ -5,6 +5,7 @@ import { ProcedurePanelComponent } from "../procedure-panel/procedure-panel.comp
 import { LoginService } from "../../services/login/login.service";
 import { DatePeriod } from "../../models/date-period.model";
 import { DatePeriodEvent } from "../../events/date-period/date-period.event";
+import { ProcedureTypePanelComponent } from "../procedure-type-panel/procedure-type-panel.component";
 
 @Component({
   selector: 'app-procedures-tools',
@@ -13,13 +14,15 @@ import { DatePeriodEvent } from "../../events/date-period/date-period.event";
     NgOptimizedImage,
     ProcedureDropdownComponent,
     NgIf,
-    ProcedurePanelComponent
+    ProcedurePanelComponent,
+    ProcedureTypePanelComponent
   ],
   templateUrl: './procedures-tools.component.html',
   styleUrl: './procedures-tools.component.css'
 })
 export class ProceduresToolsComponent implements OnInit {
 
+  isProcedureTypePanelOpen: boolean = false;
   isProcedurePanelOpen: boolean = false;
   selectedDate: DatePeriod = new DatePeriod();
 
@@ -32,20 +35,31 @@ export class ProceduresToolsComponent implements OnInit {
     this.datePeriodEvent.getSelectedDate().subscribe((selectedDate: DatePeriod): DatePeriod => this.selectedDate = selectedDate);
   }
 
+  procedureTypeStartPanel(): void {
+    if (this.loginService.isTokenExpiredThenRedirect()) {
+      this.isProcedureTypePanelOpen = true;
+    }
+  }
+
+  //TODO: Usar método ao fechar o painel de tipos de procedimentos
+  closeProcedureTypePanel(): void {
+    this.isProcedureTypePanelOpen = false;
+  }
+
   newProcedureToAddAndStartPanel(): void {
     if (this.loginService.isTokenExpiredThenRedirect()) {
       this.isProcedurePanelOpen = true;
     }
   }
 
+  closeProcedurePanel(): void {
+    this.isProcedurePanelOpen = false;
+  }
+
   isDisableAddNewProcedure(): boolean {
     const datePeriodCurrent: DatePeriod = new DatePeriod();
     return datePeriodCurrent.month === this.selectedDate.month &&
       datePeriodCurrent.year === this.selectedDate.year;
-  }
-
-  closeProcedurePanel(): void {
-    this.isProcedurePanelOpen = false;
   }
 
 }

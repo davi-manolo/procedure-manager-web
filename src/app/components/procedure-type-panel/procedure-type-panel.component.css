@@ -1,0 +1,141 @@
+.procedure-type-panel {
+  display: flex;
+  width: 685px;
+  height: 760px;
+  padding: 42px;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid rgba(39, 41, 55, 0.12);
+  background: #FFF;
+  box-shadow: 0 2px 8px 0 rgba(39, 41, 55, 0.08);
+  gap: 22px;
+}
+
+.header {
+  display: inline-flex;
+  margin-bottom: -12px;
+}
+
+.tools {
+  display: inline-flex;
+  width: 100%;
+  height: 42px;
+  gap: 22px;
+}
+
+.procedure-type-panel > .header > h1 {
+  width: 100%;
+  color: #272937;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: -1px;
+}
+
+.procedure-type-panel > p {
+  width: 100%;
+  color: #272937;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+}
+
+.search-container {
+  position: relative;
+  width: 398px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+}
+
+.search {
+  box-sizing: border-box;
+  display: inline-flex;
+  width: 398px;
+  height: 42px;
+  padding: 14px 14px 14px 45px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  border-radius: 8px;
+  background: #FFF;
+  transition: 0.4s;
+  border: 1px solid rgba(39, 41, 55, 0.12);
+  outline: none;
+}
+
+.search:hover {
+  border-color: #4CAAFF;
+  border-width: 2px;
+  padding: 14px 14px 14px 44px;
+}
+
+.search:focus {
+  border-color: #0078E5;
+  border-width: 2px;
+  padding: 14px 14px 14px 44px;
+}
+
+.button-add-procedure-type {
+  display: inline-flex;
+  height: 42px;
+  width: 180px;
+  color: #FFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #1991FF;
+  border-radius: 8px;
+  border: 1px solid #0878e5;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.button-add-procedure-type:hover {
+  background: #4CAAFF;
+  border: 1px solid #1991FF;
+}
+
+.button-add-procedure-type:active {
+  background: #0078E5;
+}
+
+.procedure-type-table {
+  width: 100%;
+  height: 100%;
+  background: #4CAAFF;
+}
+
+.close-button {
+  width: 25px;
+  height: 25px;
+  background-color: #F2F2F3;
+  border-radius: 50%;
+  border: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.close-button > img {
+  margin-top: 2px;
+}
+
+.close-button:hover {
+  background-color: #eaeaea;
+}
