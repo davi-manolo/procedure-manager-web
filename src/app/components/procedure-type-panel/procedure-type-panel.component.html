@@ -2,7 +2,7 @@
   <div class="procedure-type-panel">
     <div class="header">
       <h1>Tipos de Procedimentos</h1>
-      <button class="close-button">
+      <button class="close-button" (click)="closePanel()">
         <img ngSrc="assets/images/icons/close-button.svg" alt="Tipo de Procedimento" height="18" width="18">
       </button>
     </div>
@@ -16,7 +16,7 @@
         Incluir Novo Tipo
       </button>
     </div>
-    <table *ngIf="false">
+    <table *ngIf="procedureTypeList.length != 0">
       <caption class="sr-only">Descrição da Tabela</caption>
       <thead>
       <tr>
@@ -26,9 +26,9 @@
       </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="bold">Procedimento 1</td>
-          <td>20,50%</td>
+        <tr *ngFor="let procedureType of paginatedItems">
+          <td class="bold">{{ procedureType.name }}</td>
+          <td>{{ procedureType.percentage }}</td>
           <td class="actions">
             <button class="edit-button">
               <img ngSrc="assets/images/icons/edit.svg" alt="Editar" width="14" height="14"/>
@@ -38,59 +38,24 @@
             </button>
           </td>
         </tr>
-        <tr>
-          <td>Procedimento 1</td>
-          <td>20,50%</td>
-          <td>E - D</td>
-        </tr>
-        <tr>
-          <td>Procedimento 1</td>
-          <td>20,50%</td>
-          <td>E - D</td>
-        </tr>
-        <tr>
-          <td>Procedimento 1</td>
-          <td>20,50%</td>
-          <td>E - D</td>
-        </tr>
-        <tr>
-          <td>Procedimento 1</td>
-          <td>20,50%</td>
-          <td>E - D</td>
-        </tr>
-        <tr>
-          <td>Procedimento 1</td>
-          <td>20,50%</td>
-          <td>E - D</td>
-        </tr>
-        <tr>
-          <td>Procedimento 1</td>
-          <td>20,50%</td>
-          <td>E - D</td>
-        </tr>
-        <tr>
-          <td>Procedimento 1</td>
-          <td>20,50%</td>
-          <td>E - D</td>
-        </tr>
       </tbody>
     </table>
-    <div class="bottom">
-      <div class="pagination" *ngIf="false">
-        <button class="previous-button">
+    <div class="bottom" *ngIf="procedureTypeList.length != 0">
+      <div class="pagination">
+        <button class="previous-button" (click)="onPageChange(currentPage - 1)" [disabled]="isFirstPage()">
           <img ngSrc="assets/images/icons/arrow-left.svg" alt="Próximo" width="30" height="30"/>
           Anterior
         </button>
         <p class="tab">|</p>
-        <span>1 de 1</span>
+        <span>{{ currentPage }} de {{ math.ceil(procedureTypeList.length / itemsPerPage) }}</span>
         <p class="tab">|</p>
-        <button class="next-button">
+        <button class="next-button" (click)="onPageChange(currentPage + 1)" [disabled]="isLastPage()">
           Próximo
           <img ngSrc="assets/images/icons/arrow-right.svg" alt="Anterior" width="30" height="30"/>
         </button>
       </div>
     </div>
-    <div class="empty-table" *ngIf="true">
+    <div class="empty-table" *ngIf="procedureTypeList.length == 0">
       <img ngSrc="assets/images/icons/empty-list.svg" alt="Tabela vazia" width="100" height="100"/>
       <p class="title">Sem resultados encontrados</p>
       <p class="description">

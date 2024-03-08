@@ -41,9 +41,10 @@ export class ProceduresToolsComponent implements OnInit {
     }
   }
 
-  //TODO: Usar método ao fechar o painel de tipos de procedimentos
   closeProcedureTypePanel(): void {
-    this.isProcedureTypePanelOpen = false;
+    if (this.loginService.isTokenExpiredThenRedirect()) {
+      this.isProcedureTypePanelOpen = false;
+    }
   }
 
   newProcedureToAddAndStartPanel(): void {

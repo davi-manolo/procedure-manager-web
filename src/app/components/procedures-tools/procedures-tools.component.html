@@ -1,5 +1,5 @@
 <!--Painel de tipos de procedimentos -->
-<app-procedure-type-panel *ngIf="isProcedureTypePanelOpen"></app-procedure-type-panel>
+<app-procedure-type-panel *ngIf="isProcedureTypePanelOpen" (close)="closeProcedureTypePanel()"></app-procedure-type-panel>
 
 <!--Painel de adição do procedimento -->
 <app-procedure-panel *ngIf="isProcedurePanelOpen" [isAddFlow]="true" [title]="'Novo Procedimento'" [buttonTitle]="'Adicionar'" (close)="closeProcedurePanel()"></app-procedure-panel>
