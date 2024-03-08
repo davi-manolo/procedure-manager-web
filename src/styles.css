@@ -36,7 +36,7 @@ h3 {
 
 /*Fundo de sobreposição com blur*/
 .base-blur {
-  z-index: 8000;
+  z-index: 1000;
   position: absolute;
   top: 0;
   left: 0;

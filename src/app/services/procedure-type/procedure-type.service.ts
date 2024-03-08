@@ -27,4 +27,12 @@ export class ProcedureTypeService extends EnvironmentService {
     );
   }
 
+  deleteProcedure(procedureTypeId: string): Observable<void> {
+    const url: string = this.apiUrlProcedureType.concat(`/${procedureTypeId}/disable`)
+
+    const params: HttpParams = new HttpParams().set('userId', `${this.storage.get('user.id')}`);
+
+    return this.http.patch<void>(url, null, { headers: this.getDefaultHeaders(), params: params });
+  }
+
 }

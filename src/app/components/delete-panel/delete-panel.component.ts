@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgOptimizedImage } from "@angular/common";
 import { LoginService } from "../../services/login/login.service";
 
@@ -15,6 +15,8 @@ export class DeletePanelComponent {
 
   @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
   @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
+
+  @Input() text: string = '';
 
   constructor(private loginService: LoginService) {}
 

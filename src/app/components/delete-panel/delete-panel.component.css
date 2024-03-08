@@ -1,3 +1,7 @@
+.base-blur {
+  z-index: 2000;
+}
+
 .delete-panel {
   display: flex;
   width: 480px;

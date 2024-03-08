@@ -2,13 +2,13 @@
   <div class="delete-panel">
     <h1>Confirmar</h1>
     <p>
-      Deseja realmente excluir este procedimento?<br>
+      {{ text }}<br>
       Essa ação não pode ser desfeita.
     </p>
     <div class="buttons">
       <button class="cancel-button" (click)="cancelDelete()">Cancelar</button>
       <button class="confirm-button" (click)="confirmDelete()">
-        <img ngSrc="assets/images/icons/trash.svg" alt="Editar procedimento" width="20" height="20"/>
+        <img ngSrc="assets/images/icons/trash.svg" alt="Excluir" width="20" height="20"/>
         Excluir
       </button>
     </div>

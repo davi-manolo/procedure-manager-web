@@ -1,5 +1,5 @@
 <!--Painel de confirmarção de exclusão do procedimento -->
-<app-delete-panel *ngIf="isDeletePanelOpen" (confirm)="confirmDeleteProcedureAction()" (cancel)="closeDeletePanel()"></app-delete-panel>
+<app-delete-panel *ngIf="isDeletePanelOpen" [text]="'Deseja realmente excluir este procedimento?'" (confirm)="confirmDeleteProcedureAction()" (cancel)="closeDeletePanel()"></app-delete-panel>
 
 <!--Painel de edição do procedimento -->
 <app-procedure-panel *ngIf="isProcedurePanelOpen" [isAddFlow]="false" [title]="'Editar Procedimento'" [buttonTitle]="'Salvar Edição'" (close)="closeProcedurePanel()"></app-procedure-panel>

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { LoginService } from "../../services/login/login.service";
 import { ProcedureType } from "../../models/procedure-type.model";
 import { ProcedureTypeService } from "../../services/procedure-type/procedure-type.service";
+import { DeletePanelComponent } from "../delete-panel/delete-panel.component";
 
 @Component({
   selector: 'app-procedure-type-panel',
@@ -14,7 +15,8 @@ import { ProcedureTypeService } from "../../services/procedure-type/procedure-ty
     ProcedureTypeDropdownComponent,
     ReactiveFormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    DeletePanelComponent
   ],
   templateUrl: './procedure-type-panel.component.html',
   styleUrl: './procedure-type-panel.component.css'
@@ -28,6 +30,9 @@ export class ProcedureTypePanelComponent implements OnInit {
   procedureTypeList: ProcedureType[] = []
   itemsPerPage: number = 8;
   currentPage: number = 1;
+
+  isDeletePanelOpen: boolean = false;
+  private procedureTypeToDelete: ProcedureType | null = null;
 
   constructor(
     private loginService: LoginService,
@@ -57,10 +62,30 @@ export class ProcedureTypePanelComponent implements OnInit {
     this.currentPage = newPage;
   }
 
+  setProcedureToDeleteAndStartPanel(item: any): void {
+    if (this.loginService.isTokenExpiredThenRedirect()) {
+      this.procedureTypeToDelete = item;
+      this.isDeletePanelOpen = true;
+    }
+  }
+
   closePanel(): void {
     if (this.loginService.isTokenExpiredThenRedirect()) {
       this.close.emit();
     }
+  }
+
+  confirmDeleteProcedureAction(): void {
+    this.procedureTypeService.deleteProcedure(this.procedureTypeToDelete!.procedureTypeId).subscribe((): void => {
+      this.updateProcedureTypeTable();
+      this.closeDeletePanel();
+    });
+  }
+
+  closeDeletePanel(): void {
+    this.isDeletePanelOpen = false;
+    this.procedureTypeToDelete = null;
+    this.updateProcedureTypeTable();
   }
 
   private updateProcedureTypeTable(): void {

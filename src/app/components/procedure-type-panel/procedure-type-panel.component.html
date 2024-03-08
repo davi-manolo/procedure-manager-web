@@ -1,3 +1,7 @@
+<!--Painel de confirmarção de exclusão do procedimento -->
+<app-delete-panel *ngIf="isDeletePanelOpen" [text]="'Deseja realmente excluir este tipo de procedimento?'" (confirm)="confirmDeleteProcedureAction()" (cancel)="closeDeletePanel()"></app-delete-panel>
+
+
 <div class="base-blur">
   <div class="procedure-type-panel">
     <div class="header">
@@ -33,7 +37,7 @@
             <button class="edit-button">
               <img ngSrc="assets/images/icons/edit.svg" alt="Editar" width="14" height="14"/>
             </button>
-            <button class="delete-button">
+            <button class="delete-button" (click)="setProcedureToDeleteAndStartPanel(procedureType)">
               <img ngSrc="assets/images/icons/delete.svg" alt="Excluir" width="14" height="14"/>
             </button>
           </td>
