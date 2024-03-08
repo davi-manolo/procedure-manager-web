@@ -25,18 +25,18 @@
       <td>{{ procedure.valueReceived | currency:'BRL':'symbol':'1.2-2' }}</td>
       <td class="actions" *ngIf="isDisableActionButtons()">
         <button class="edit-button" (click)="setProcedureToEditAndStartPanel(procedure)">
-          <img ngSrc="assets/images/icons/edit-procedure.svg" alt="Editar procedimento" width="14" height="14"/>
+          <img ngSrc="assets/images/icons/edit.svg" alt="Editar procedimento" width="14" height="14"/>
         </button>
         <button class="delete-button" (click)="setProcedureToDeleteAndStartPanel(procedure)">
-          <img ngSrc="assets/images/icons/delete-procedure.svg" alt="Excluir procedimento" width="14" height="14"/>
+          <img ngSrc="assets/images/icons/delete.svg" alt="Excluir procedimento" width="14" height="14"/>
         </button>
       </td>
       <td class="actions" *ngIf="!isDisableActionButtons()">
         <button class="edit-button" (click)="setProcedureToEditAndStartPanel(procedure)" [disabled]="true">
-          <img ngSrc="assets/images/icons/edit-procedure-gray.svg" alt="Editar procedimento" width="14" height="14"/>
+          <img ngSrc="assets/images/icons/edit-gray.svg" alt="Editar procedimento" width="14" height="14"/>
         </button>
         <button class="delete-button" (click)="setProcedureToDeleteAndStartPanel(procedure)" [disabled]="true">
-          <img ngSrc="assets/images/icons/delete-procedure-gray.svg" alt="Excluir procedimento" width="14" height="14"/>
+          <img ngSrc="assets/images/icons/delete-gray.svg" alt="Excluir procedimento" width="14" height="14"/>
         </button>
       </td>
     </tr>
@@ -56,7 +56,7 @@
   </button>
 </div>
 <div class="empty-table" *ngIf="procedureList.length == 0">
-  <img ngSrc="assets/images/icons/empty-list.svg" alt="Anterior" width="100" height="100"/>
+  <img ngSrc="assets/images/icons/empty-list.svg" alt="Tabela vazia" width="100" height="100"/>
   <p class="title">Sem resultados encontrados</p>
   <p class="description">
     Sem resultados para este período/pesquisa selecionado.<br>
