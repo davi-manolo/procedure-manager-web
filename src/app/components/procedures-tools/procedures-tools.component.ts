@@ -5,7 +5,7 @@ import { ProcedurePanelComponent } from "../procedure-panel/procedure-panel.comp
 import { LoginService } from "../../services/login/login.service";
 import { DatePeriod } from "../../models/date-period.model";
 import { DatePeriodEvent } from "../../events/date-period/date-period.event";
-import { ProcedureTypePanelComponent } from "../procedure-type-panel/procedure-type-panel.component";
+import { ProcedureTypeTablePanelComponent } from "../procedure-type-table-panel/procedure-type-table-panel.component";
 
 @Component({
   selector: 'app-procedures-tools',
@@ -15,14 +15,14 @@ import { ProcedureTypePanelComponent } from "../procedure-type-panel/procedure-t
     ProcedureDropdownComponent,
     NgIf,
     ProcedurePanelComponent,
-    ProcedureTypePanelComponent
+    ProcedureTypeTablePanelComponent
   ],
   templateUrl: './procedures-tools.component.html',
   styleUrl: './procedures-tools.component.css'
 })
 export class ProceduresToolsComponent implements OnInit {
 
-  isProcedureTypePanelOpen: boolean = false;
+  isProcedureTypeTablePanelOpen: boolean = false;
   isProcedurePanelOpen: boolean = false;
   selectedDate: DatePeriod = new DatePeriod();
 
@@ -35,15 +35,15 @@ export class ProceduresToolsComponent implements OnInit {
     this.datePeriodEvent.getSelectedDate().subscribe((selectedDate: DatePeriod): DatePeriod => this.selectedDate = selectedDate);
   }
 
-  procedureTypeStartPanel(): void {
+  procedureTypeTableStartPanel(): void {
     if (this.loginService.isTokenExpiredThenRedirect()) {
-      this.isProcedureTypePanelOpen = true;
+      this.isProcedureTypeTablePanelOpen = true;
     }
   }
 
-  closeProcedureTypePanel(): void {
+  closeProcedureTypeTablePanel(): void {
     if (this.loginService.isTokenExpiredThenRedirect()) {
-      this.isProcedureTypePanelOpen = false;
+      this.isProcedureTypeTablePanelOpen = false;
     }
   }
 

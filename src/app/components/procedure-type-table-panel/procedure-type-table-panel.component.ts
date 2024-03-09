@@ -8,7 +8,7 @@ import { ProcedureTypeService } from "../../services/procedure-type/procedure-ty
 import { DeletePanelComponent } from "../delete-panel/delete-panel.component";
 
 @Component({
-  selector: 'app-procedure-type-panel',
+  selector: 'app-procedure-type-table-panel',
   standalone: true,
   imports: [
     NgOptimizedImage,
@@ -18,10 +18,10 @@ import { DeletePanelComponent } from "../delete-panel/delete-panel.component";
     NgForOf,
     DeletePanelComponent
   ],
-  templateUrl: './procedure-type-panel.component.html',
-  styleUrl: './procedure-type-panel.component.css'
+  templateUrl: './procedure-type-table-panel.component.html',
+  styleUrl: './procedure-type-table-panel.component.css'
 })
-export class ProcedureTypePanelComponent implements OnInit {
+export class ProcedureTypeTablePanelComponent implements OnInit {
 
   protected readonly math = Math;
 
