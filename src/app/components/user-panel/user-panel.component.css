@@ -27,3 +27,18 @@
   height: 100%;
   object-fit: cover;
 }
+
+/*Remover estilo após implementação de Logout*/
+.logout-button {
+  margin-left: 10px;
+  height: 25px;
+  width: 60px;
+  background: #E8E8E9;
+  border-radius: 5px;
+  border: solid 1px #BDBDBD;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #00BCD4;
+}

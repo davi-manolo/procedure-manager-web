@@ -3,6 +3,7 @@ import { UserService } from "../../services/user/user.service";
 import { User } from "../../models/user.model";
 import { NgOptimizedImage } from "@angular/common";
 import { environment } from "../../../environments/environment";
+import { LoginService } from "../../services/login/login.service";
 
 @Component({
   selector: 'app-user-panel',
@@ -18,7 +19,7 @@ export class UserPanelComponent implements OnInit {
   user: User | null = null;
   profileImageUrl: string | null = environment.apiUrl.concat('/uploads/images/default.png');
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.userService.getUser().subscribe(user => {
@@ -38,4 +39,6 @@ export class UserPanelComponent implements OnInit {
     }
   }
 
+  //TODO: Remover após implementação de Logout
+  logout = () => this.loginService.logout();
 }
