@@ -1,7 +1,11 @@
-.procedure-panel {
+.base-blur {
+  z-index: 2000;
+}
+
+.procedure-type-panel {
   display: flex;
-  width: 680px;
-  height: 395px;
+  width: 593px;
+  height: 302px;
   padding: 42px;
   flex-direction: column;
   flex-shrink: 0;
@@ -17,7 +21,7 @@
   margin-bottom: -12px;
 }
 
-.procedure-panel > .header > h1 {
+.procedure-type-panel > .header > h1 {
   width: 100%;
   color: #272937;
   font-size: 32px;
@@ -27,7 +31,7 @@
   letter-spacing: -1px;
 }
 
-.procedure-panel > p {
+.procedure-type-panel > p {
   width: 100%;
   color: #272937;
   font-size: 16px;
@@ -42,6 +46,17 @@
   display: flex;
   flex-wrap: wrap;
   column-gap: 24px;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+}
+
+.container {
+  position: relative;
 }
 
 .update-button {
@@ -79,31 +94,7 @@
   color: #A5A6AB;
 }
 
-.container {
-  position: relative;
-}
-
-.icon {
-  position: absolute;
-  top: 50%;
-  left: 14px;
-  transform: translateY(-50%);
-}
-
-.icon-currency {
-  position: absolute;
-  top: 50%;
-  left: 45px;
-  transform: translateY(-50%);
-  color: #272937;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 24px;
-  letter-spacing: -0.6px;
-}
-
-.input-date, .input-procedure-type, .input-costumer, .input-value {
+.input-name, .input-percentage {
   box-sizing: border-box;
   display: inline-flex;
   width: 250px;
@@ -124,44 +115,26 @@
   outline: none;
 }
 
-.input-date:hover,
-.input-procedure-type:hover,
-.input-costumer:hover,
-.input-value:hover {
+.input-name:hover,
+.input-percentage:hover {
   border-color: #4CAAFF;
   border-width: 2px;
   padding: 14px 14px 14px 44px;
 }
 
-.input-date:focus,
-.input-procedure-type:focus,
-.input-costumer:focus,
-.input-value:focus {
+.input-name:focus,
+.input-percentage:focus {
   border-color: #0078E5;
   border-width: 2px;
   padding: 14px 14px 14px 44px;
 }
 
-.input-value {
-  padding-left: 66px;
-  width: 200px;
+.input-name {
+  width: 310px;
 }
 
-.input-value:hover, .input-value:focus {
-  padding-left: 65px;
-}
-
-.input-date, .input-date:hover, .input-date:active, .input-date:focus {
-  width: 200px;
-  padding-left: 0;
-}
-
-.input-costumer {
-  width: 370px;
-}
-
-.input-procedure-type {
-  width: 370px;
+.input-percentage {
+  width: 170px;
 }
 
 .close-button {
@@ -188,8 +161,4 @@ label {
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
-}
-
-.add-custom-space {
-  margin-bottom: 16px;
 }

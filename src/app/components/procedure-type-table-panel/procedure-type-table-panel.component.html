@@ -1,6 +1,8 @@
 <!--Painel de confirmarção de exclusão do procedimento -->
 <app-delete-panel *ngIf="isDeletePanelOpen" [text]="'Deseja realmente excluir este tipo de procedimento?'" (confirm)="confirmDeleteProcedureAction()" (cancel)="closeDeletePanel()"></app-delete-panel>
 
+<!--Painel de inclusão/edição do tipo procedimento -->
+<app-procedure-type-panel *ngIf="isProcedureTypePanelOpen" [isAddFlow]="isAddMode" [title]="procedurePanelTitle" [buttonTitle]="procedurePanelButtonTitle" (close)="closeProcedureTypePanel()"></app-procedure-type-panel>
 
 <div class="base-blur">
   <div class="procedure-type-panel">
@@ -15,7 +17,7 @@
         <img class="search-icon" ngSrc="assets/images/icons/search.svg" alt="Novo Procedimento" height="22" width="22">
         <input class="search" type="search" placeholder="Pesquisar">
       </div>
-      <button class="button-add-procedure-type">
+      <button class="button-add-procedure-type" (click)="procedureTypeStartPanel()">
         <img ngSrc="assets/images/icons/add.svg" alt="Novo Procedimento" height="22" width="22">
         Incluir Novo Tipo
       </button>
@@ -32,12 +34,12 @@
       <tbody>
         <tr *ngFor="let procedureType of paginatedItems">
           <td class="bold">{{ procedureType.name }}</td>
-          <td>{{ procedureType.percentage }}</td>
+          <td>{{ procedureType.percentage | number:'1.2-2' }}</td>
           <td class="actions">
-            <button class="edit-button">
+            <button class="edit-button" (click)="setProcedureTypeToEditAndStartPanel(procedureType)">
               <img ngSrc="assets/images/icons/edit.svg" alt="Editar" width="14" height="14"/>
             </button>
-            <button class="delete-button" (click)="setProcedureToDeleteAndStartPanel(procedureType)">
+            <button class="delete-button" (click)="setProcedureTypeToDeleteAndStartPanel(procedureType)">
               <img ngSrc="assets/images/icons/delete.svg" alt="Excluir" width="14" height="14"/>
             </button>
           </td>

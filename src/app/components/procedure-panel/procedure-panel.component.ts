@@ -45,7 +45,7 @@ export class ProcedurePanelComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.isAddFlow) {
-      this.transportProcedureEvent.selectedProcedure.subscribe(procedure => {
+      this.transportProcedureEvent.getSelectedProcedure().subscribe(procedure => {
         this.procedure = procedure;
         this.selectedProcedureTypeName = procedure.procedureTypeName;
       });

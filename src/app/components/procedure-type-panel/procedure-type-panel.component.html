@@ -1,0 +1,27 @@
+<div class="base-blur">
+  <div class="procedure-type-panel">
+    <div class="header">
+      <h1>{{ title }}</h1>
+      <button class="close-button" (click)="closePanel()">
+        <img ngSrc="assets/images/icons/close-button.svg" alt="Novo Procedimento" height="18" width="18">
+      </button>
+    </div>
+    <div class="inputs">
+      <div>
+        <label>Nome do procedimento</label>
+        <div class="container">
+          <img class="icon" ngSrc="assets/images/icons/add-paper.svg" alt="Novo Procedimento" height="24" width="24">
+          <input class="input-name" type="text" [(ngModel)]="procedureType.name" [value]="procedureType.name" placeholder="Nome do tipo procedimento">
+        </div>
+      </div>
+      <div>
+        <label>Porcentagem de lucro</label>
+        <div class="container">
+          <img class="icon" ngSrc="assets/images/icons/percentage.svg" alt="Novo Procedimento" height="24" width="24">
+          <input class="input-percentage" type="text" [(ngModel)]="procedureType.percentage" [value]="procedureType.percentage" placeholder="0,00">
+        </div>
+      </div>
+    </div>
+    <button class="update-button" (click)="sendProcedureTypeToUpdate()" [disabled]="isProcedureValid()">{{ buttonTitle }}</button>
+  </div>
+</div>

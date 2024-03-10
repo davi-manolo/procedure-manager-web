@@ -8,10 +8,13 @@ import { Procedure } from "../../models/procedure.model";
 export class TransportProcedureEvent {
 
   private selectedProcedureSubject: BehaviorSubject<Procedure> = new BehaviorSubject<Procedure>(new Procedure());
-  selectedProcedure: Observable<any> = this.selectedProcedureSubject.asObservable();
 
   setSelectedProcedure(item: Procedure): void {
     this.selectedProcedureSubject.next(item);
+  }
+
+  getSelectedProcedure(): Observable<Procedure> {
+    return this.selectedProcedureSubject.asObservable();
   }
 
 }
